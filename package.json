@@ -1,0 +1,27 @@
+{
+  "name": "antonio-cardoso",
+  "version": "1.0.0",
+  "description": "Trabalho Final de Curso",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "go": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AntonioHenriqueAC/tcc.git"
+  },
+  "author": "Antonio Henrique Cardoso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AntonioHenriqueAC/tcc/issues"
+  },
+  "homepage": "https://github.com/AntonioHenriqueAC/tcc#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "nodemon": "^2.0.2"
+  }
+}
