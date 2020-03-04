@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-var corridaCtrl = require('../../app/controllers/corrida.ctr');
+var navigate = require('../../config/routes/navigatePage');
 
 
-router.get('/', corridaCtrl.rootPage)
-router.get('/corrida-check', corridaCtrl.checkPage)
-
-router.post('/', corridaCtrl.RedPage)
+router.get('/', navigate.rootPage)
+router.get('/corrida-check', navigate.checkPage)
+router.post('/', navigate.buttonNext)
 
 
 

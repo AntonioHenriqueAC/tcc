@@ -1,0 +1,38 @@
+th,
+td {
+	padding: 10px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+tr {
+	padding: 2px;
+}
+.title {
+	padding: 20px;
+	font-size: 30px;
+	font-family: 'Droid Sans',
+	arial,
+	serif;
+
+}
+
+table{
+	margin-left: 15%;
+	margin-top: 5%;
+	text-align: center;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+h1 {
+	text-align: center;
+	font-size: 80px;
+	font-family: 'Droid Sans', arial, serif;
+}	
+
+.plus {
+	background-color: green;
+	font-size: 250%;
+}
+
