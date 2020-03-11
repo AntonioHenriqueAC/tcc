@@ -1,15 +1,16 @@
 var express = require('express');
 var router = express.Router();
 
-var navigate = require('../../config/routes/navigatePage');
+var corrida = require('../../app/controllers/corridas.ctr');
 
+router.get('/', corrida.list)
 
-router.get('/', navigate.rootPage)
-router.post('/', navigate.buttonRootPage)
-router.get('/corrida-check', navigate.checkPage)
-router.post('/corrida-check', navigate.buttonCheckPage)
-router.get('/corrida-detail', navigate.detailPage)
-// router.post('/', navigate.buttonNext)
+// router.post('/', corrida.buttonRootPage)
+// router.get('/corrida-check', corrida.checkPage)
+// router.post('/corrida-check', corrida.buttonCheckPage)
+// router.get('/corrida-detail', corrida.detailPage)
+// router.post('/corrida-detail', corrida.buttonDetailPage)
+// router.post('/', corrida.buttonNext)
 
 
 
