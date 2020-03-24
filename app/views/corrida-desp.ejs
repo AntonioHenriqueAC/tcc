@@ -9,17 +9,16 @@
 </head>
 
 <body>
-		<form method="post" action="/" class="buttons" id="back">
-			<a type="submit" style="cursor: pointer; margin-left: -94%;
-    margin-top: -0.6%;" name="back" class="button back" onClick="getId()"><span>Voltar</span></a>
-		</form>
-
-
-	<h1>Corrida: <span class="data"><%= corrida %> </span><br><br>DESPACHADA com sucesso!</h1>
-
-	<div  class="button-ok button-check oloco">
-	</div>
-
+	
+	
+	<h1 style="font-size:70px">Esta corrida já foi <br><br><span style="font-size: 90px;color: rgb(141, 25, 25)">DESPACHADA!</span>	
+		<br><br>Escolha outra
+		corrida para despachar!</h1>
+	
+	<form method="post" action="/" class="buttons" id="back">
+		<a type="submit" style="cursor: pointer;" name="back" class="button error" onClick="getId()"><span>Voltar</span></a>
+	</form>
+	
 
 	<script src="/app.js"></script>
 	<script>

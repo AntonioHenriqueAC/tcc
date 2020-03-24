@@ -10,59 +10,31 @@ Corrida.prototype.list = (callback) => {
  fs.readFile(rootPath + '/config/database.json', 'utf8', (err, result) => {
 	 var data = [];
 	 
-	if (err) throw err;
-
-	var obj = JSON.parse(result);
-
-if (Object.keys(obj.corridas).length > 4) {
-		var i = 4;
-	} else {
-		var i = (Object.keys(obj.corridas).length - 1);
-	}
-
-	obj.corridas.forEach(function (corrida) { 
-		var tag = JSON.stringify(corrida.tags);
-		var nuMCorrida = '';
-
-		for (let i = 0; i < tag.length; i++) {
-			if((i>7) && (i<16)){
-				nuMCorrida += tag[i]
-			}
-		}
-
-		if (i >= 0) {
-			corrida.nuMCorrida = nuMCorrida;
-			data[i] = corrida;
-			i++
-		}
-	});
-	
-	
- 	callback(err, data);
- });
- };
-
-Corrida.prototype.update = (callback) => {
-
- fs.writeFile(rootPath + '/config/database.json', 'utf8', (err, result) => {
-	 var data = [];
+	 if (err) throw err;
 	 
-	if (err) throw err;
+	 var obj = JSON.parse(result);
+	 var integerJSON = obj;
+	var numeroCorridas = Object.keys(obj.corridas).length;
 
-	var obj = JSON.parse(result);
+	 for (let i = 0; i < numeroCorridas; i++) {
+		 if ((obj.corridas[i] == null) || (obj.corridas[i] == undefined) ) {
+			 delete obj.corridas[i];
+			}
+		}
 
-if (Object.keys(obj.corridas).length > 4) {
-		var i = 4;
-	} else {
-		var i = (Object.keys(obj.corridas).length - 1);
-	}
+		
+		if (Object.keys(obj.corridas).length > 4) {
+				var i = 4;
+			} else {
+				var i = (Object.keys(obj.corridas).length - 1);
+			}
 
 	obj.corridas.forEach(function (corrida) { 
 		var tag = JSON.stringify(corrida.tags);
 		var nuMCorrida = '';
 
 		for (let i = 0; i < tag.length; i++) {
-			if((i>7) && (i<16)){
+			if((i>6) && (i<15)){
 				nuMCorrida += tag[i]
 			}
 		}
@@ -75,9 +47,8 @@ if (Object.keys(obj.corridas).length > 4) {
 	});
 	
 	
- 	callback(err, data);
+ 	callback(err, data, integerJSON);
  });
  };
-
 
 module.exports = Corrida;

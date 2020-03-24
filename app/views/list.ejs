@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/list.css">
 	<link href=' http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -16,7 +17,9 @@
 		<tr class='title'>
 			<th> Nº da Corrida</th>
 			<th>Status</th>
-			<th>Acurácia</th>
+			<th>Acurácia (%)</th>
+			<th>Vizualizar</th>
+			<th>Deletar</th>
 		</tr>
 
 		
@@ -24,20 +27,28 @@
 			
 			
 
-			<% var i=1;%>
+			<% var i=1; j=1;%>
 
 			<% corrida.forEach(function(corrida) { %>
 
 				<tr><form>
-					<th><input name="NumCorrida" value="<%= corrida.nuMCorrida%>"></th>
+					<th><input desabled name="NumCorrida" value="<%= corrida.nuMCorrida%>"></th>
 					<th><input name="Status" value="<%= corrida.status%>"></th>
 					<th><input name="Acc" value="<%= corrida.acc%>"></th>
 					</form>
 					
-					<th class="noneBorder">	
+					<th class="noneBorder buttons">	
 						<form method="post" action="/corrida-detail" id="list">
-							<button id="<%= i++ %>" type="submit" form="list" class="button" onClick="getId()">Ver</button>
-							<input hidden id="MYid" name="id" type="text" value="OPA">
+							<a id="<%= i++ %>" type="submit" form="list" name="list" class="button mail" onClick="getId()"
+								style="cursor: pointer;"><span>View</span></a>
+							<input hidden id="myIdList" name="id" type="text" value="OPA">
+						</form>
+					</th>
+					<th class="noneBorder buttons">
+						<form method="post" action="/corrida-delete" id="delete">
+							<a id="<%= j++ %>" type="submit" name="delete" form="delete" class="button delete" onClick="getId()"
+								style="cursor: pointer;"><span>Delete</span></a>
+							<input hidden id="myIdDelete" name="id" type="text" value="OPA">
 						</form>
 					</th>
 						
@@ -55,8 +66,14 @@
  <script>
 	 function getId(){
 		 addEventListener('click', function (ev) {
-		 var ident = ev.target.id;
-		 document.getElementById("MYid").value = ident;
+			 var ident = ev.target.id;
+			 if(ev.target.name === 'list'){
+				document.getElementById("myIdList").value = ident;
+				 document.getElementById('list').submit()
+			 }else{
+				document.getElementById("myIdDelete").value = ident;
+				 document.getElementById('delete').submit()
+			 }
 		})
 	 }
  </script>

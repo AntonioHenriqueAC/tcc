@@ -1,3 +1,9 @@
+body{
+	    background: linear-gradient(45deg, #49a09d, #26473b);
+}
+
+
+
 th,
 td {
 	padding: 10px;
@@ -37,30 +43,31 @@ h1 {
 	font-size: 250%;
 }
 
-.button {
-	display: inline-block;
-	vertical-align: top;
-	height: 48px;
-	line-height: 46px;
-	padding: 0 25px;
-	font-family: inherit;
-	font-size: 15px;
-	color: rgb(255, 248, 248);
-	text-align: center;
-	text-decoration: none;
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
-	background-color: #3b7f45;
-	background-clip: padding-box;
-	border: 1px solid;
-	border-color: #202020 #1a1a1a #111;
-	border-radius: 25px;
-	background-image: -webkit-linear-gradient(top, #3d3d3d, #2b4547);
-	background-image: -moz-linear-gradient(top, #3d3d3d, #2b4547);
-	background-image: -o-linear-gradient(top, #3d3d3d, #2b4547);
-	background-image: linear-gradient(to bottom, #3d3d3d, #2b4547);
-	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 3px rgba(0, 0, 0, 0.3);
-	box-shadow: inset 0 1px rgba(255, 255, 255, 0.09), 0 1px 3px rgba(0, 0, 0, 0.3);
-}
+ .buttons a.button.delete {
+ 	position: relative;
+ 	overflow: hidden;
+ }
+
+ .buttons a.button.delete span {
+ 	display: block;
+ 	position: relative;
+ 	bottom: 0px;
+ }
+
+ .buttons a.button.delete:before {
+ 	content: '\f1f8';
+ 	font-family: FontAwesome;
+ 	display: block;
+ 	width: 100%;
+ 	height: 100%;
+ 	padding: 20px;
+ 	top: -100%;
+ 	left: 0;
+ 	position: absolute;
+ }
+
+
+
 
 .noneBorder{
 	border-right: none;
@@ -69,8 +76,114 @@ h1 {
 input{
 	border: none;
 	text-align: center;
-	font-family: 'Droid Sans', arial, serif;
-	font-size: 17px;
-	text-decoration-color: #1a1a1a;
+	font-size: 24px;
+	font-family: 'Courier New', Courier, monospace;
+	sans-serif;
+	color: rgb(255, 255, 255);
+	background-color: transparent;
 	pointer-events:none;
+}
+
+
+
+
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+.buttons {
+	text-align: center;
+	margin-top: 25px;
+}
+
+.buttons a.button {
+	display: inline-block;
+	margin: 25px;
+	background: #20292c;
+	color: white;
+	padding: 20px;
+	text-decoration: none;
+	font-family: helvetica neue, helvetica, arial, sans-serif;
+	position: relative;
+	transition: 0.25s ease-in-out;
+	border-radius: 3px;
+}
+
+.buttons a.button:before,
+.buttons a.button:after,
+.buttons a.button span {
+	transition: 0.25s ease-in-out;
+}
+
+.buttons a.button.mail {
+	position: relative;
+	overflow: hidden;
+}
+
+.buttons a.button.mail span {
+	display: block;
+	position: relative;
+	bottom: 0px;
+}
+
+.buttons a.button.mail:before {
+	content: "\f002";
+	font-family: FontAwesome;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	top: -100%;
+	left: 0;
+	position: absolute;
+}
+
+.buttons a.button.mail:hover {
+	background: #53af09;
+}
+
+.buttons a.button.mail:hover span {
+	bottom: -56px;
+}
+
+.buttons a.button.mail:hover:before {
+	top: 0%;
+}
+
+.buttons a.button.delete {
+	position: relative;
+	overflow: hidden;
+}
+
+.buttons a.button.delete span {
+	display: block;
+	position: relative;
+	bottom: 0px;
+}
+
+.buttons a.button.delete:before {
+	content: '\f1f8';
+	font-family: FontAwesome;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	top: -100%;
+	left: 0;
+	position: absolute;
+}
+
+.buttons a.button.delete:hover {
+	background: #cb3017;
+}
+
+.buttons a.button.delete:hover span {
+	bottom: -56px;
+}
+
+.buttons a.button.delete:hover:before {
+	top: 0%;
 }

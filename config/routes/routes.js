@@ -1,19 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-var corrida = require('../../app/controllers/corridas.ctr');
-var buttons = require('../../app/controllers/button.ctrl');
+var corrida = require('../../app/controllers/corrida.ctrl');
 
-router.get('/', corrida.list);
-// router.get('/corrida-detail', corrida.detailPage)
-
-
-router.post('/', buttons.rootPage)
-router.post('/corrida-detail', buttons.detailPage)
-router.post('/corrida-check', buttons.checkCorrida)
-// router.post('/corrida-check', corrida.buttonCheckPage)
-// router.post('/', corrida.buttonNext)
-
-
+router.get('/', corrida.rootPage)
+router.post('/', corrida.rootPage)
+router.post('/corrida-detail', corrida.detailPage)
+router.post('/corrida-check', corrida.checkCorrida)
+router.post('/corrida-delete', corrida.deleteCorrida)
 
 module.exports = router;
