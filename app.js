@@ -1,4 +1,4 @@
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 1111
 
 var express = require('express');
 var app = express();
@@ -10,10 +10,10 @@ app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'ejs');
 
 
-app.use(require('./config/routes/routes.js')); 
-
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(require('./config/routes/routes.js')); 
 
 app.listen(port).on('error', console.log);
 

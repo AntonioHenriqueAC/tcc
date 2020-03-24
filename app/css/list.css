@@ -63,6 +63,14 @@ h1 {
 }
 
 .noneBorder{
-	/* border: none; */
 	border-right: none;
+}
+
+input{
+	border: none;
+	text-align: center;
+	font-family: 'Droid Sans', arial, serif;
+	font-size: 17px;
+	text-decoration-color: #1a1a1a;
+	pointer-events:none;
 }

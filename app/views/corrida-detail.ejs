@@ -18,57 +18,46 @@
 	<table class="table">
 		<tr class='title'>
 			<th> Nº da Corrida</th>
-			<th></th>
+			<th><%= corrida.nuMCorrida%></th>
 		</tr>
 		<tr class='title'>
 			<th> Acurácia</th>
-			<th></th>
+			<th><%= corrida.acc  %></th>
 		</tr>
 		<tr class='title'>
 			<th> Status</th>
-			<th></th>
+			<th><%= corrida.status %></th>
 		</tr>
 	</table>
 
+<h1>Peças da corrida</h1>
 
-	<h1>Peças da corrida</h1>
 	<table class="numAC">
 		<tr class='title'>
 			<th> Número</th>
 			<th>Acurácia</th>
 		</tr>
-		<tr>
-			<th>15134124124</th>
-			<th>98%</th>
-		</tr>
-		<tr>
-			<th>15134124124</th>
-			<th>81%</th>
-		</tr>
-		<tr>
-			<th>15134124124</th>
-			<th>81%</th>
-		</tr>
-		<tr>
-			<th>15134124124</th>
-			<th>81%</th>
-		</tr>
-		<tr>
-			<th>15134124124</th>
-			<th>81%</th>
-		</tr>
-		</td>
-		</tr>
+
+		<% for(var i=1; i<tags; i++){ %>
+			<tr>
+				<th><%= corrida.tags[i] %> </th>
+				<th>98%</th>
+			</tr>
+		<% } %>
 	</table>
+
 	<br>
 	<br>
-		<form method="post" action="/corrida-check" class="button button-check oloco">
-			<input type="submit" value="       " class="buttonValid">
-		</form>
+
+
+	<form method="post" action="/corrida-check" id="check">
+		<input hidden value="<%= id %>" name="id">
+		<button type="submit" class="button button-check oloco" form="check"></button>
+	</form>
+
 	<br>
+
 	<script src="/app.js"></script>
-
-
 </body>
 
 </html>

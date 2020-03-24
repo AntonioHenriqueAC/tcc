@@ -17,36 +17,49 @@
 			<th> Nº da Corrida</th>
 			<th>Status</th>
 			<th>Acurácia</th>
-
 		</tr>
+
 		
 		<div class="row">
-			<% for(var i = 0; i < corrida.length; i++) {%>
-			<tr>
-				<th> <%= corrida[i].tags %> </th>
-				<th><%= corrida[i].status%> </th>
-				<th> <%= corrida[i].acc%>% </th>
+			
+			
 
-				<th class="noneBorder">
-					<form method="post" action="/corrida-detail">
-						<input type="submit" class="button" value="Ver">
+			<% var i=1;%>
+
+			<% corrida.forEach(function(corrida) { %>
+
+				<tr><form>
+					<th><input name="NumCorrida" value="<%= corrida.nuMCorrida%>"></th>
+					<th><input name="Status" value="<%= corrida.status%>"></th>
+					<th><input name="Acc" value="<%= corrida.acc%>"></th>
 					</form>
-				</th>
-			</tr>
-			<div class="col-md-12 jumbotron">
-				<h4><%= corrida[i] %></h4>
-			</div>
-			<% } %>
+					
+					<th class="noneBorder">	
+						<form method="post" action="/corrida-detail" id="list">
+							<button id="<%= i++ %>" type="submit" form="list" class="button" onClick="getId()">Ver</button>
+							<input hidden id="MYid" name="id" type="text" value="OPA">
+						</form>
+					</th>
+						
+				</tr>
+				<% }); %>
 		</div>
 
 				
-	</td>
-		</tr>
+
 	</table>
 <br>
 <br>
 <br>
  <script src="/app.js"></script>
+ <script>
+	 function getId(){
+		 addEventListener('click', function (ev) {
+		 var ident = ev.target.id;
+		 document.getElementById("MYid").value = ident;
+		})
+	 }
+ </script>
 </body>
 
 </html>

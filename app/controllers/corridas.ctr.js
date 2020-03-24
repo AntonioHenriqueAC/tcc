@@ -1,35 +1,28 @@
-var express = require('express');
+var path = require('path');
+var rootPath = path.join(__dirname, '../../');
 var CorridaBs = require('../business/corrida.bs');
+var routes = require(rootPath + 'config/routes/routes');
 
-
-// var router = express.Router();
-
-// var path = require('path');
-// var rootPath = path.join(__dirname, '../../');
-
-// var port = 5000;
-// var localhost = 'http://localhost:'+ port +'/';
 
 
 module.exports.list = (req, res) => {
 	var corrida = new CorridaBs();
 
 	corrida.list((err, result) => {
-		res.render('list', { corrida: result})
+		res.render('list', { 
+			corrida: result
+		})
+		if (err) throw console.log("err", err);
 	});
-
-
-	// corrida.list(req)
-	// 	.then(corridas => {
-	// 		res.json({
-	// 			code: 200,
-	// 			data: corridas
-	// 		});
-	// 	})
-	// 	.catch( (err)=>{
- 	//  	console.log('err :', err);
-	// 	})
 }
+
+// module.exports.detailPage = (req, res) => {
+
+// 		routes.router.get('/corrida-detail', (req, res) => {
+// 			res.render('corrida-detail')
+// 		});
+// }
+
 // var index =  (req, res) => {
 
 // 	// res.sendFile(
@@ -43,17 +36,7 @@ module.exports.list = (req, res) => {
 // 	})
 // };
 
-// // Home page
-// var buttonRootPage = router.post('/', (req, res) => {
-//  	res.redirect(localhost);
-// });
 
-// // Check Corrida
-// var detailPage = router.get('/corrida-detail', (req, res) => {
-// 	res.sendFile(
-// 		path.join(rootPath, 'app/views/corrida-detail.html')
-// 	);
-// });
 
 // var buttonDetailPage = router.post('/corrida-detail', (req, res) => {
 // 	res.sendFile(
@@ -77,10 +60,10 @@ module.exports.list = (req, res) => {
 
 
 // module.exports = {
-// 		// rootPage,
-// 		checkPage,
-// 		buttonDetailPage,
-// 		buttonCheckPage,
-// 		detailPage,
+// // 		// rootPage,
+// // 		checkPage,
+// // 		buttonDetailPage,
+// // 		buttonCheckPage,
+// // 		detailPage,
 // 		buttonRootPage
 // 	}
