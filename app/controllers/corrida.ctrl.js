@@ -5,17 +5,7 @@ var fs = require('fs');
 var CorridaBs = require('../business/corrida.bs');
 
 
-// Home page
-module.exports.list = (req, res) => {
-console.log("ONDE CAI ESSA PORRA????????????????????????????????????");
-		if (err) throw console.log("err", err);
-
-		res.render('list')
-}
-
-
-// Home page
-module.exports.rootPage = (req, res) =>{
+module.exports.list = (req, res) =>{
 	var corrida = new CorridaBs();
 
 	corrida.list((err, result) => {
