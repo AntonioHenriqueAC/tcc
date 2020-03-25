@@ -1,8 +1,8 @@
 # tcc
 
-- For Linux
 
-01.To install nodejs and npm run the following commands:
+
+01. To install nodejs and npm run the following commands:
 
 $ sudo apt update
 $ sudo apt install nodejs
