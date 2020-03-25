@@ -18,7 +18,7 @@ var mainRoutes = require('./config/routes/routes')
 app.use(mainRoutes);
 
 app.listen(port, () => {
-	console.log("Listen port "+ port)
+	console.log("Port listening on  http://localhost:"+ port)
 }).on('error', console.log);
 
 module.exports = app;
