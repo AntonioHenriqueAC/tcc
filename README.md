@@ -7,16 +7,26 @@
 $ sudo apt update
 $ sudo apt install nodejs
 ```
-02. Clone the project :
+02. From your shell, install Git using apt-get:
 ```
-$ git@github.com:AntonioHenriqueAC/tcc.git
+$ sudo apt-get update
+$ sudo apt-get install git
 ```
-03. Open the file project and use command on terminal:
+03. Verify the installation was successful by typing git --version:
+```
+$ git --version
+git version 2.9.2
+```
+04. Clone the project :
+```
+$ git clone git@github.com:AntonioHenriqueAC/tcc.git TCC_Opala
+```
+05. Open the file project and use command on terminal:
 ```
 $ npm install
 $ npm run go
 ```
-04. Open your browser with url;
+06. Open your browser with url;
 ```
 http://localhost:1111
 ```
