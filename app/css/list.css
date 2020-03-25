@@ -101,7 +101,8 @@ input{
 
 .buttons a.button {
 	display: inline-block;
-	margin: 25px;
+	margin: -5px;
+	margin-top: 1px;
 	background: #20292c;
 	color: white;
 	padding: 20px;
