@@ -1,8 +1,7 @@
 # Follow the steps to execute the python codes on Jupyter Notebook (Google Colab).
 
 
-[Data Augmentation](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Data_augmentation.ipynb
-)
+[Data Augmentation](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Data_augmentation.ipynb)
 
 
 [Number Detector](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Number_Detector.ipynb)
