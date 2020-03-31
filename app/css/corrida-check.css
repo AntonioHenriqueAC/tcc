@@ -1,5 +1,6 @@
 body {
 	background: linear-gradient(45deg, #49a09d, #26473b);
+	height: 0vh;
 }
 
 th,
