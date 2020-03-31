@@ -3,10 +3,11 @@
 
 [Data Augmentation](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Data_augmentation.ipynb)
 
+[Barcode Detector](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Barcode_detector.ipynb)
 
 [Number Detector](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Number_Detector.ipynb)
 
-[Barcode Detector](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Barcode_Detector.ipynb)
+
 
 # Follow the steps to run the project.
 
