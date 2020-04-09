@@ -1,12 +1,12 @@
 # Follow the steps to execute the python codes on Jupyter Notebook (Google Colab).
 
+[Full Project](https://github.com/AntonioHenriqueAC/Barcode_Number-Recognition/blob/master/google_colab/Project.ipynb)
 
-[Data Augmentation](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Data_augmentation.ipynb)
+[Data Augmentation](https://github.com/AntonioHenriqueAC/Barcode_Number-Recognition/blob/master/google_colab/Data_augmentation.ipynb)
 
-[Barcode Detector](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Barcode_detector.ipynb)
+[Barcode Detector](https://github.com/AntonioHenriqueAC/Barcode_Number-Recognition/blob/master/google_colab/Barcode_detector.ipynb)
 
-[Number Detector](https://github.com/AntonioHenriqueAC/tcc/blob/master/google_colab/Number_Detector.ipynb)
-
+[Number Detector](https://github.com/AntonioHenriqueAC/Barcode_Number-Recognition/blob/master/google_colab/Number_Detector.ipynb)
 
 
 # Follow the steps to run the project.
