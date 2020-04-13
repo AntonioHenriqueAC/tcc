@@ -30,7 +30,7 @@ git version 2.9.2
 ```
 04. Clone the project :
 ```
-$ git clone git@github.com:AntonioHenriqueAC/tcc.git TCC_Opala
+$ git clone git@github.com:AntonioHenriqueAC/Barcode_Number-Recognition.git
 ```
 05. Open the file project and use command on terminal:
 ```
