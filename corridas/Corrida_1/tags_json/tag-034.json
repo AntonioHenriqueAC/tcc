@@ -1,0 +1,154 @@
+[
+    {
+        "name": "2",
+        "percentage_probability": 99.83092546463013,
+        "box_points": [
+            70,
+            72,
+            76,
+            98
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "8",
+        "percentage_probability": 99.84215497970581,
+        "box_points": [
+            79,
+            71,
+            84,
+            98
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "1",
+        "percentage_probability": 99.41768646240234,
+        "box_points": [
+            86,
+            71,
+            91,
+            99
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "0",
+        "percentage_probability": 99.45155382156372,
+        "box_points": [
+            94,
+            72,
+            100,
+            97
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "8",
+        "percentage_probability": 99.62459802627563,
+        "box_points": [
+            102,
+            72,
+            108,
+            98
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "7",
+        "percentage_probability": 99.8045027256012,
+        "box_points": [
+            111,
+            69,
+            116,
+            97
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "9",
+        "percentage_probability": 99.87455606460571,
+        "box_points": [
+            118,
+            69,
+            126,
+            100
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "3",
+        "percentage_probability": 99.69748258590698,
+        "box_points": [
+            127,
+            70,
+            133,
+            99
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "0",
+        "percentage_probability": 99.81855750083923,
+        "box_points": [
+            135,
+            71,
+            141,
+            98
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "2",
+        "percentage_probability": 99.83356595039368,
+        "box_points": [
+            143,
+            71,
+            150,
+            99
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "7",
+        "percentage_probability": 99.58140254020691,
+        "box_points": [
+            166,
+            69,
+            173,
+            97
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "1",
+        "percentage_probability": 99.72466230392456,
+        "box_points": [
+            176,
+            72,
+            180,
+            98
+        ],
+        "alert": "false"
+    },
+    {
+        "name": "4",
+        "percentage_probability": 98.91490340232849,
+        "box_points": [
+            183,
+            70,
+            191,
+            100
+        ],
+        "alert": "true"
+    },
+    {
+        "media": 99.64742706372188
+    },
+    {
+        "imagem": "034"
+    },
+    {
+        "numero": "2810879302714"
+    }
+]
