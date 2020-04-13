@@ -10,7 +10,7 @@ module.exports.list = (req, res) =>{
 
 	corrida.list((err, result) => {
 		if (err) throw console.log("err", err);
-
+		
 		res.render('list', {
 			corrida: result
 		})

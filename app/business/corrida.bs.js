@@ -1,3 +1,5 @@
+ 'use strict';
+
 var fs = require('fs');
 var path = require('path');
 var rootPath = path.join(__dirname, '../../');
@@ -47,8 +49,18 @@ Corrida.prototype.list = (callback) => {
 	});
 	
 	
- 	callback(err, data, integerJSON);
- });
- };
+	callback(err, data, integerJSON);
+});
+
+ const dir = './data';
+
+ function init() {
+ 	return fs.readdirSync(dir)
+ 		.filter(name => path.extname(name) === '.json')
+ 		.map(name => require(path.join(dir, name)));
+ }
+
+};
+
 
 module.exports = Corrida;

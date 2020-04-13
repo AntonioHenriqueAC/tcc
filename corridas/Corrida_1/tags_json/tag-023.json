@@ -67,7 +67,7 @@
     },
     {
         "name": "9",
-        "percentage_probability": 99.82683658599854,
+        "percentage_probability": 99.82682466506958,
         "box_points": [
             106,
             59,
@@ -133,7 +133,7 @@
     },
     {
         "name": "3",
-        "percentage_probability": 90.29051661491394,
+        "percentage_probability": 90.29052257537842,
         "box_points": [
             177,
             54,
@@ -143,7 +143,7 @@
         "alert": "true"
     },
     {
-        "media": 98.92159929642311
+        "media": 98.92159883792584
     },
     {
         "imagem": "023"
