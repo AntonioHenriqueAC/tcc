@@ -25,11 +25,11 @@
 		</tr>
 		<tr class='title'>
 			<th> Nº de peças</th>
-			<th class="data"><%= tags -1  %></th>
+			<th class="data"><%= corrida.qte  %></th>
 		</tr>
 		<tr class='title'>
 			<th> Acurácia</th>
-			<th class="data"><%= corrida.acc  %>%</th>
+			<th class="data"><%= corrida.acc.toFixed(3) %>%</th>
 		</tr>
 		<tr class='title'>
 			<th> Status</th>
@@ -45,12 +45,7 @@
 			<th>Acurácia</th>
 		</tr>
 
-		<% for(var i=1; i<tags; i++){ %>
-			<tr>
-				<th class="datas"><%= corrida.tags[i] %> </th>
-				<th class="datas">98%</th>
-			</tr>
-		<% } %>
+		
 	</table>
 
 	<br>

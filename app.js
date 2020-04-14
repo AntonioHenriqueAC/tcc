@@ -5,7 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
 
-app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static(path.join(__dirname, '/app/')));
 app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'ejs');
 

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/css/list.css">
+	<link rel="stylesheet" href="/css/list.css">
 	<link href=' http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="shortcut icon" href="/app/img/favicon.ico" type="image/x-icon">
@@ -33,7 +33,7 @@
 				<tr><form>
 					<th><input desabled name="NumCorrida" value="<%= corrida.nuMCorrida%>"></th>
 					<th><input name="Status" value="<%= corrida.status%>"></th>
-					<th><input name="Acc" value="<%= corrida.acc%>"></th>
+					<th><input name="Acc" value="<%= corrida.acc.toFixed(3)%>"></th>
 					</form>
 					
 					<th class="noneBorder buttons">	
