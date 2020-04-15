@@ -2,6 +2,18 @@
     {
         "numCorrida": "2810879302716",
         "status": "Inadimplente",
+        "acc": 99.56547310567973,
+        "qte": 91
+    },
+    {
+        "numCorrida": "2810899202777",
+        "status": "Inadimplente",
+        "acc": 99.50268839258499,
+        "qte": 103
+    },
+    {
+        "numCorrida": "2810879302716",
+        "status": "Inadimplente",
         "acc": 99.6414665788667,
         "qte": 90
     },

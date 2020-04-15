@@ -116,14 +116,14 @@ Corrida.prototype.listHome = async () => {
 };
 
 
-Corrida.prototype.groupCorridaDetail = (req) => {
+Corrida.prototype.groupCorridaDetail = async (req) => {
 
 	var target = parseInt(req.body.id);
 	var targetDir = rootPath + 'corridas/Corrida_' + target + '/tags_json/'
 	var targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
-		
+
 		// make Promise version of fs.readdir()
-		fs.readdirAsync = function (dirname) {
+		const readdirAsync = function (dirname) {
 			return new Promise(function (resolve, reject) {
 				fs.readdir(dirname, function (err, filenames) {
 					if (err)
@@ -135,7 +135,7 @@ Corrida.prototype.groupCorridaDetail = (req) => {
 		};
 
 		// make Promise version of fs.readFile()
-		fs.readFileAsync = function (filename, enc) {
+		const readFileAsync = function (filename, enc) {
 			return new Promise(function (resolve, reject) {
 				fs.readFile(filename, enc, function (err, data) {
 					if (err)
@@ -148,13 +148,9 @@ Corrida.prototype.groupCorridaDetail = (req) => {
 
 		// utility function, return Promise
 		function getFile(filename) {
-			return fs.readFileAsync(targetDir + filename, 'utf8');
+			return readFileAsync(targetDir + filename, 'utf8');
 		}
 
-		// example of using promised version of getFile
-		// getFile('tag-000.json', 'utf8').then(function (data) {
-		// console.log(data);
-		// });
 
 
 		// a function specific to my project to filter out the files I need to read and process, you can pretty much ignore or write your own filter function.
@@ -165,35 +161,27 @@ Corrida.prototype.groupCorridaDetail = (req) => {
 		}
 
 		// start a blank fishes.json file
-		fs.writeFile(targetDirCorrida +'database.json', '', function () {
-			// console.log('done')
-		});
+		await writeFilePromise(targetDirCorrida + 'database.json', '');
 
 
+		return new Promise(async (resolve, reject) => {
 		// read all json files in the directory, filter out those needed to process, and using Promise.all to time when all async readFiles has completed. 
-		fs.readdirAsync(targetDir).then(function (filenames) {
-			filenames = filenames.filter(isDataFile);
-			// console.log('filenames :', filenames);
-			return Promise.all(filenames.map(getFile));
-		}).then(function (files) {
-			var summaryFiles = [];
-			files.forEach(function (file) {
-				var json_file = JSON.parse(file);
-				summaryFiles.push({
+		let filenames = await readdirAsync(targetDir)
+		filenames = filenames.filter(isDataFile);
+		let files = await Promise.all(filenames.map(getFile));
+
+		let summaryFiles = [];
+
+		files.forEach(function (file) {
+			let json_file = JSON.parse(file);
+			summaryFiles.push({
 					"config": json_file[0]
-				});
-			});
-			fs.appendFile(targetDirCorrida + 'database.json', JSON.stringify(summaryFiles, null, 4), function (err) {
-				if (err) {
-					return console.log(err);
-				}
-				console.log("The file was appended!");
-			});
-		}).catch(err => {
-			if (err) throw console.log("err", err);
+				 });
 		});
-	
-	return Promise.resolve(true);
+
+			await appendFilePromise(targetDirCorrida + 'database.json', JSON.stringify(summaryFiles, null, 4))
+			resolve()
+			})
 
 };
 
@@ -207,37 +195,18 @@ let result = await readFilePromise(path, 'utf8')
 let data = [];
 let i = 0
 let targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
-	
-console.log('result :', result);
-let otracoisa = JSON.parse(result);
-console.log('asdasdsadsa :', otracoisa);
 
-// var array = JSON.parse("[" + result + "]");
-	// var array = result.split("[");
-	// var array = result.split("]");
- 	// 	console.log('obj :', array);
-	 
-	// console.log('obj :', obj);
+result = JSON.parse(result);
 
-	// var integerJSON = obj;
+const mapPromise = result.map( (corrida) => {
+	if (i >= 0) {
+		data[i] = corrida.config;
+		i++
+	}
+});
 
-
-	// obj.forEach(function (corrida) {
-	// 	var tag = JSON.stringify(corrida.numCorrida);
-	// 	var nuMCorrida = '';
-
-	// 	for (let i = 0; i < tag.length; i++) {
-	// 		if ((i > 2) && (i < 11)) {
-	// 			nuMCorrida += tag[i]
-	// 		}
-	// 	}
-
-	// 	if (i >= 0) {
-	// 		obj[i].nuMCorrida = nuMCorrida;
-	// 		data = obj;
-	// 		i++
-	// 	}
-	// });
+await Promise.all(mapPromise);
+return data
 
 }
 
