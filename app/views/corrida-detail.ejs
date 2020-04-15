@@ -21,19 +21,19 @@
 	<table class="table">
 		<tr class='title'>
 			<th> Nº da Corrida</th>
-			<th class="data"><%= %></th>
+			<th class="data"><%= detail.nuMCorrida%></th>
 		</tr>
 		<tr class='title'>
 			<th> Nº de peças</th>
-			<th class="data"><%=   %></th>
+			<th class="data"><%= detail.qte  %></th>
 		</tr>
 		<tr class='title'>
 			<th> Acurácia</th>
-			<th class="data"><%=  %>%</th>
+			<th class="data"><%=detail.acc.toFixed(3)  %>%</th>
 		</tr>
 		<tr class='title'>
 			<th> Status</th>
-			<th class="data"><%=  %></th>
+			<th class="data"><%= detail.status %></th>
 		</tr>
 	</table>
 
@@ -41,9 +41,17 @@
 
 	<table class="numAC">
 		<tr class='title'>
+			<th> Identificador</th>
 			<th> Número</th>
 			<th>Acurácia</th>
 		</tr>
+		<% for(var i=1; i<tags; i++){ %>
+			<tr>
+				<th class="datas"><%= corrida[i].id %> </th>
+				<th class="datas"><%= corrida[i].num %> </th>
+				<th class="datas"><%= corrida[i].acc.toFixed(3) %> </th>
+			</tr>
+		<% } %>
 
 		
 	</table>

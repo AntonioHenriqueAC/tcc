@@ -201,7 +201,6 @@ const mapPromise = result.map( (corrida) => {
 		i++
 	}
 });
-console.log(' HASUDIASIDHASUIDIAASDIASUD' );
 
 await Promise.all(mapPromise);
 return data
