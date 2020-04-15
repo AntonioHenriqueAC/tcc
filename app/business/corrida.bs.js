@@ -118,70 +118,68 @@ Corrida.prototype.listHome = async () => {
 
 Corrida.prototype.groupCorridaDetail = async (req) => {
 
-	var target = parseInt(req.body.id);
-	var targetDir = rootPath + 'corridas/Corrida_' + target + '/tags_json/'
-	var targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
+var target = parseInt(req.body.id);
+var targetDir = rootPath + 'corridas/Corrida_' + target + '/tags_json/'
+var targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
 
-		// make Promise version of fs.readdir()
-		const readdirAsync = function (dirname) {
-			return new Promise(function (resolve, reject) {
-				fs.readdir(dirname, function (err, filenames) {
-					if (err)
-						reject(err);
-					else
-						resolve(filenames);
-				});
-			});
-		};
-
-		// make Promise version of fs.readFile()
-		const readFileAsync = function (filename, enc) {
-			return new Promise(function (resolve, reject) {
-				fs.readFile(filename, enc, function (err, data) {
-					if (err)
-						reject(err);
-					else
-						resolve(data);
-				});
-			});
-		};
-
-		// utility function, return Promise
-		function getFile(filename) {
-			return readFileAsync(targetDir + filename, 'utf8');
-		}
-
-
-
-		// a function specific to my project to filter out the files I need to read and process, you can pretty much ignore or write your own filter function.
-		function isDataFile(filename) {
-			return (filename.split('.')[1] == 'json' &&
-				filename.split('.')[0] != 'fishes' &&
-				filename.split('.')[0] != 'fishes_backup')
-		}
-
-		// start a blank fishes.json file
-		await writeFilePromise(targetDirCorrida + 'database.json', '');
-
-
-		return new Promise(async (resolve, reject) => {
-		// read all json files in the directory, filter out those needed to process, and using Promise.all to time when all async readFiles has completed. 
-		let filenames = await readdirAsync(targetDir)
-		filenames = filenames.filter(isDataFile);
-		let files = await Promise.all(filenames.map(getFile));
-
-		let summaryFiles = [];
-
-		files.forEach(function (file) {
-			let json_file = JSON.parse(file);
-			summaryFiles.push({
-					"config": json_file[0]
-				 });
+// make Promise version of fs.readdir()
+const readdirAsync = function (dirname) {
+	return new Promise(function (resolve, reject) {
+		fs.readdir(dirname, function (err, filenames) {
+			if (err)
+				reject(err);
+			else
+				resolve(filenames);
 		});
+	});
+};
 
-			await appendFilePromise(targetDirCorrida + 'database.json', JSON.stringify(summaryFiles, null, 4))
-			resolve()
-			})
+// make Promise version of fs.readFile()
+const readFileAsync = function (filename, enc) {
+	return new Promise(function (resolve, reject) {
+		fs.readFile(filename, enc, function (err, data) {
+			if (err)
+				reject(err);
+			else
+				resolve(data);
+		});
+	});
+};
+
+// utility function, return Promise
+function getFile(filename) {
+	return readFileAsync(targetDir + filename, 'utf8');
+}
+
+
+
+// a function specific to my project to filter out the files I need to read and process, you can pretty much ignore or write your own filter function.
+function isDataFile(filename) {
+	return (filename.split('.')[1] == 'json' &&
+		filename.split('.')[0] != 'fishes' &&
+		filename.split('.')[0] != 'fishes_backup')
+}
+
+await writeFilePromise(targetDirCorrida + 'database.json', '');
+
+
+return new Promise(async (resolve, reject) => {
+let filenames = await readdirAsync(targetDir)
+filenames = filenames.filter(isDataFile);
+let files = await Promise.all(filenames.map(getFile));
+
+let summaryFiles = [];
+
+files.forEach(function (file) {
+	let json_file = JSON.parse(file);
+	summaryFiles.push({
+			"config": json_file[0]
+			});
+});
+
+await appendFilePromise(targetDirCorrida + 'database.json', JSON.stringify(summaryFiles, null, 4));
+resolve()
+})
 
 };
 
@@ -190,11 +188,10 @@ Corrida.prototype.listTags = async (req) => {
 var target = parseInt(req.body.id);
 path = rootPath + '/corridas/Corrida_' + target + '/database.json'
 
-let result = await readFilePromise(path, 'utf8')
+let result = await readFilePromise(path, 'utf8');
 
 let data = [];
 let i = 0
-let targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
 
 result = JSON.parse(result);
 
@@ -204,10 +201,10 @@ const mapPromise = result.map( (corrida) => {
 		i++
 	}
 });
+console.log(' HASUDIASIDHASUIDIAASDIASUD' );
 
 await Promise.all(mapPromise);
 return data
-
 }
 
 

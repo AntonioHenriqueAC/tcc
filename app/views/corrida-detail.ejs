@@ -21,19 +21,19 @@
 	<table class="table">
 		<tr class='title'>
 			<th> Nº da Corrida</th>
-			<th class="data"><%= corrida.nuMCorrida%></th>
+			<th class="data"><%= %></th>
 		</tr>
 		<tr class='title'>
 			<th> Nº de peças</th>
-			<th class="data"><%= corrida.qte  %></th>
+			<th class="data"><%=   %></th>
 		</tr>
 		<tr class='title'>
 			<th> Acurácia</th>
-			<th class="data"><%= corrida.acc.toFixed(3) %>%</th>
+			<th class="data"><%=  %>%</th>
 		</tr>
 		<tr class='title'>
 			<th> Status</th>
-			<th class="data"><%= corrida.status %></th>
+			<th class="data"><%=  %></th>
 		</tr>
 	</table>
 
@@ -53,7 +53,7 @@
 
 
 	<form method="post" action="/corrida-check" id="check" class="buttons">
-		<input hidden value="<%= id %>" name="id">
+		<input hidden value="<%=  %>" name="id">
 		<a type="submit" style="cursor: pointer; font-size: 25px;" class="button mail" form="check" name="check" onClick="getId()"><span>Despachar</span></a>
 	</form>
 

@@ -29,11 +29,13 @@ module.exports.detailPage = async (req, res) => {
 		async function callDetailPage() {
 			await corrida.groupCorridaDetail(req);
 			const data = await corrida.listTags(req);
-			res.render('corrida-detail', {
-				corrida: data
+
+			console.log('entrar no render');
+				
+			res.render('corrida-detail',{
+			corrida: data
 			})
 		}
-
 }
 
 
