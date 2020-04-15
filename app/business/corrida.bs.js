@@ -1,52 +1,53 @@
  'use strict';
 
+const util = require('util')
 var fs = require('fs');
 var path = require('path');
 var rootPath = path.join(__dirname, '../../');
-// var Promise = require('bluebird');
+const appendFilePromise = util.promisify(fs.appendFile)
+const writeFilePromise = util.promisify(fs.writeFile)
+const readFilePromise = util.promisify(fs.readFile)
 
 function Corrida(req){
 	this.req = req;
 }
 
 
-Corrida.prototype.list = (callback) => {
+Corrida.prototype.list = async () => {
 
-	 fs.readFile(rootPath + '/config/database.json', 'utf8', (err, result) => {
-		 var data = [];
-	    var i = 0
-		 if (err) throw console.log("err: ", err);
+	const result = await readFilePromise(rootPath + '/config/database.json', 'utf8')
+
+	let data = [];
+	let i = 0
+
+	let obj = JSON.parse(result);
+
+	const mapPromise = obj.map(function (corrida) {
+		let tag = JSON.stringify(corrida.numCorrida);
+		let nuMCorrida = '';
 		
-		 var obj = JSON.parse(result);
-		 var integerJSON = obj;
-
-
-		obj.forEach(function (corrida) { 
-			var tag = JSON.stringify(corrida.numCorrida);
-			var nuMCorrida = '';
-			
-			for (let i = 0; i < tag.length; i++) {
-				if((i>2) && (i<11)){
-					nuMCorrida += tag[i]
-				}
+		for (let i = 0; i < tag.length; i++) {
+			if((i>2) && (i<11)){
+				nuMCorrida += tag[i]
 			}
+		}
 
-			if (i >= 0) {
-				obj[i].nuMCorrida = nuMCorrida;
-				data = obj;
-				i++
-			}
-		});
+		if (i >= 0) {
+			obj[i].nuMCorrida = nuMCorrida;
+			data = obj;
+			i++
+		}
+	});
 		
-		callback(err, data, integerJSON);
-		});
+	await Promise.all(mapPromise);
+	return data
 };
 
 
-Corrida.prototype.listHome = () => {
+Corrida.prototype.listHome = async () => {
 
 	// make Promise version of fs.readdir()
-	fs.readdirAsync = function (dirname) { 
+	const readdirAsync = function (dirname) { 
 		return new Promise(function (resolve, reject) {
 			fs.readdir(dirname, function (err, filenames) {
 				if (err)
@@ -58,7 +59,7 @@ Corrida.prototype.listHome = () => {
 	};
 
 	// make Promise version of fs.readFile()
-	fs.readFileAsync = function (filename, enc) {
+	const readFileAsync = function (filename, enc) {
 		return new Promise(function (resolve, reject) {
 			fs.readFile(filename, enc, function (err, data) {
 				if (err)
@@ -71,7 +72,7 @@ Corrida.prototype.listHome = () => {
 
 	// utility function, return Promise
 	function getFile(filename) {
-		return fs.readFileAsync(rootPath +'/corridas/config/'+filename, 'utf8');
+		return readFileAsync(rootPath +'/corridas/config/'+filename, 'utf8');
 	}
 
 	// example of using promised version of getFile
@@ -88,41 +89,30 @@ Corrida.prototype.listHome = () => {
 	}
 
 	// start a blank fishes.json file
-	fs.writeFile(rootPath + '/config/database.json', '', function () {
-		// console.log('done')
-	});
+	await writeFilePromise(rootPath + '/config/database.json', '');
+	
+	return new Promise(async (resolve, reject) => {
+		// read all json files in the directory, filter out those needed to process, and using Promise.all to time when all async readFiles has completed. 
+		let filenames = await readdirAsync(rootPath + '/corridas/config')
+		filenames = filenames.filter(isDataFile);
+		let files = await Promise.all(filenames.map(getFile));
 
+		var summaryFiles = [];
 
-	// read all json files in the directory, filter out those needed to process, and using Promise.all to time when all async readFiles has completed. 
-	fs.readdirAsync(rootPath + '/corridas/config').then(function (filenames) {
-			filenames = filenames.filter(isDataFile);
-   		// console.log('filenames :', filenames);
-			return Promise.all(filenames.map(getFile));
-		}).then(function (files) {
-				var summaryFiles = [];
-				var i = 0;
-				files.forEach(function (file) {
-					var json_file = JSON.parse(file);
-					i++;
-					summaryFiles.push({
-						"id": i,
-						"numCorrida": json_file["numCorrida"],
-						"status": json_file["Status"],
-						"acc": json_file["acc"],
-						"qte": json_file["qte"]
-					});
-				});
-				fs.appendFile(rootPath + '/config/database.json', JSON.stringify(summaryFiles, null, 4), function (err) {
-					if (err) {
-						return console.log(err);
-					}
-					// console.log("The file was appended!");
-				});
-			}).catch(err =>{
-		 			if (err) throw console.log("err", err);
+		files.forEach(function (file) {
+			var json_file = JSON.parse(file);
+			summaryFiles.push({
+				"numCorrida": json_file["numCorrida"],
+				"status": json_file["Status"],
+				"acc": json_file["acc"],
+				"qte": json_file["qte"]
+			 });
 			});
 
-	return Promise.resolve(true);
+	 await appendFilePromise(rootPath + '/config/database.json', JSON.stringify(summaryFiles, null, 4))
+	 resolve()
+	})
+
 };
 
 
@@ -202,28 +192,30 @@ Corrida.prototype.groupCorridaDetail = (req) => {
 		}).catch(err => {
 			if (err) throw console.log("err", err);
 		});
-
+	
 	return Promise.resolve(true);
 
 };
 
 
-Corrida.prototype.listTags = (req) => {
+Corrida.prototype.listTags = async (req) => {
 var target = parseInt(req.body.id);
-console.log('target :', target);
+path = rootPath + '/corridas/Corrida_' + target + '/database.json'
 
-fs.readFile(rootPath + '/corridas/Corrida_'+target+'/database.json', 'utf8', (err, result) => {
-	if (err) throw console.log("err: ", err);
-	var data = [];
-	var i = 0
+let result = await readFilePromise(path, 'utf8')
 
-	var json = result;
-	json = JSON.parse(JSON.stringify(json).split('"_id":').join('"id":'));
-
-	result = document.write(JSON.stringify(json));
-
+let data = [];
+let i = 0
+let targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
 	
-	// var obj = JSON.parse(result);
+console.log('result :', result);
+let otracoisa = JSON.parse(result);
+console.log('asdasdsadsa :', otracoisa);
+
+// var array = JSON.parse("[" + result + "]");
+	// var array = result.split("[");
+	// var array = result.split("]");
+ 	// 	console.log('obj :', array);
 	 
 	// console.log('obj :', obj);
 
@@ -246,9 +238,6 @@ fs.readFile(rootPath + '/corridas/Corrida_'+target+'/database.json', 'utf8', (er
 	// 		i++
 	// 	}
 	// });
-
-	// callback(err, data, integerJSON);
-});
 
 }
 

@@ -1,37 +1,21 @@
 var path = require('path');
 var rootPath = path.join(__dirname, '../../');
 var fs = require('fs');
-// var Promise = require('bluebird');
 var CorridaBs = require('../business/corrida.bs');
+const util = require('util')
 
 
-module.exports.list = (req, res) =>{
+module.exports.list = async (req, res) =>{
 	var corrida = new CorridaBs();
 
-	callListPage()
+	await callListPage();
 	async function callListPage() {
-		 await listHome();
-		 await list();
-	}
-
-	async function listHome() {
-		await sleep(0);
-		return corrida.listHome();
-	}
-
-	async function list() {
-		await sleep(5);
-		return corrida.list((err, result) => {
-				res.render('list', {
-					corrida: result
-				})
+		await corrida.listHome();
+		const data = await corrida.list();
+			res.render('list', {
+				corrida: data
 			})
 	}
-
-	function sleep(ms = 0) {
-		return new Promise(r => setTimeout(r, ms));
-	}
-
 
 }	
 
@@ -103,43 +87,40 @@ module.exports.deleteCorrida = (req, res) => {
 var corrida = new CorridaBs();
 
 var dir = rootPath + 'corridas/config/';
+var dirDelete = rootPath + 'corridas/deleted/';
 
-function getDirectories(path, callback) {
-	fs.readdir(path, function (err, files) {
-		if (err) return callback(err)
-		file = parseInt(req.body.id) - 1
-		let nameFile = files[file];
-		return callback(null, nameFile)
+
+const readDirPromise = util.promisify(fs.readdir);
+async function getDirectories(path ) {
+	const files = await readDirPromise(path);
+	const file = parseInt(req.body.id) - 1
+	let nameFile = files[file];
+
+	return new Promise((resolve)=>{
+		resolve(path+nameFile);
 	})
 }
 
 
-corrida.list((err, result, integerJSON) => {
+corrida.list(async (err, result, integerJSON) => {
 	if (err) throw console.log("err", err);
 
 	var targetCorrida = parseInt(req.body.id) -1;
  	console.log('targetCorrida :', targetCorrida);
 	
 	var corrida = result[targetCorrida]
- 	console.log('corrida :', corrida);
 
-	getDirectories(dir, function (err, content) {
-		if (err) throw console.log(err)
-		console.log(content)
-	});
+	const fileName = await getDirectories(dir)
+ console.log('fileName :', fileName);
 
+	var moveFile = async (file, dir2) => {
+		var f = path.basename(file);
+		var dest = path.resolve(dir2, f);
+		const renamePromise = util.promisify(fs.rename)
+		await renamePromise(file, dest);
+	};
 
-	// var moveFile = (file, dir2) => {
-	// 	var f = path.basename(file);
-	// 	var dest = path.resolve(dir2, f);
-
-	// 	fs.rename(file, dest, (err) => {
-	// 		if (err) throw err;
-	// 		else console.log('Successfully moved');
-	// 	});
-	// };
-
-	// moveFile(fileName, dir);
+	await moveFile(fileName, dirDelete);
 
 	res.render('corrida-delete', {
 			corrida: corrida.nuMCorrida
