@@ -21,7 +21,7 @@
 	</form>
 
 
-	<h1 style="margin-top: -3%;">Detalhe da Corrida</h1>
+	<h1 style="margin-top: -3%;">Detalhe da Corrida <%= position + 1 %></h1>
 
 	<table class="table">
 		<tr class='title'>
@@ -47,7 +47,7 @@
 	<table class="numAC">
 		<tr class='title'>
 			<th> Identificador</th>
-			<th> Número</th>
+			<th> Peça</th>
 			<th>Acurácia</th>
 		</tr>
 		<% var k=1;%>
@@ -55,7 +55,16 @@
 			<tr>
 				<th class="datas"><%= corrida[i].id %> </th>
 				<th class="datas"><%= corrida[i].num %> </th>
-				<th class="datas"><%= corrida[i].acc.toFixed(3) %> </th>
+				<% if (corrida[i].alert == "true") { %>
+					<th class="datas" style="background-color: rgba(255, 0, 0, 0.397)">
+						<%= corrida[i].acc.toFixed(3) %>
+					</th>
+				<% } else{ %>
+					<th class="datas">
+						<%= corrida[i].acc.toFixed(3) %>
+					</th>
+				<% } %>
+				
 
 				<th>
 					<form method="post" action="/show-image" 
@@ -66,13 +75,13 @@
 						<input hidden value="<%= position %>" name="position">
 					
 						<a type="submit" 
-							style="cursor: pointer; margin: 0;" 
+							style="cursor: pointer; margin: 0;"
 							id="<%= k++ %>"
 							name="image" 
 							class="button wiggle" 
 							form="image"
 							onClick="getId()">
-							<span>Image</span></a>
+							<span style="cursor:default">Image</span></a>
 					</form>
 				</th>
 			</tr>

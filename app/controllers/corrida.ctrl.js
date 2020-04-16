@@ -32,7 +32,7 @@ module.exports.detailPage = async (req, res) => {
 			let detail = await corrida.list();
 			await corrida.groupCorridaDetail(req);
 			let data = await corrida.listTags(req);
-
+			
 			const position = req.body.id - 1
 
 			detail = detail[position]
@@ -129,9 +129,6 @@ async function getDirectories(path ) {
 module.exports.showImage = async (req, res) => {
 	target = req.body.id - 1
 	position = parseInt(req.body.position) + 1
-//  console.log('position :', position);
-// 	position = Math.abs(req.body.position + 1)
-
 
 
 	if (target >= 0 && target < 10) target = '00' + target
