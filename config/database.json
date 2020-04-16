@@ -34,17 +34,5 @@
         "status": "Inadimplente",
         "acc": 99.2858524238823,
         "qte": 103
-    },
-    {
-        "numCorrida": "2811089702720",
-        "status": "Inadimplente",
-        "acc": 98.98040075736401,
-        "qte": 106
-    },
-    {
-        "numCorrida": "2811209702735",
-        "status": "Inadimplente",
-        "acc": 99.10878668457322,
-        "qte": 107
     }
 ]

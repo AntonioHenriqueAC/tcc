@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/corrida-detail.css">
+	<link href=' http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="/app/img/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+	<form method="POST" action="/corrida-detail" class="buttons" id="back">
+		<a type="submit" style="cursor: pointer; margin-left: -94%;
+    margin-top: -0.6%;" name="back" class="button back" onClick="getId()"><span>Voltar</span></a>
+	</form>
+
+
+	<h1 style="margin-top: -3%;">Detalhe da <span style="font-size: 90px;color: rgb(29, 218, 70)">
+		Tag-<%=id%></span></h1>
+
+	<table class="table">
+		<tr class='title'>
+			<th> Nº da Corrida</th>
+			<th> Imagem</th>
+
+		</tr>
+
+		<tr >
+			<!-- <th class="data" style="font-size:50px "><%= numCorrida %></th> -->
+			<th class="data" style="font-size:50px ">
+				<input 	 style="font-size:50px; size: 50px; width: 49%; text-align: center;" 
+							 type=" text" 
+							 value="<%= numCorrida %>"
+							 id="numcorrida"
+							 name="tag">
+				</th>
+			
+			<th>
+				<img src="data:image/jpeg;base64,<%= img %>">
+			</th>
+		</tr>
+	</table>
+
+	<br>
+	<br>
+
+	<form method="post" action="/edit-image" id="numcorrida" class="buttons">
+		<a type="submit" 
+			style="cursor: pointer; font-size: 25px;" 
+			class="button mail" 
+			form="numcorrida" 
+			name="numcorrida"
+			onClick="getId()"><span>Salvar</span></a>
+	</form>
+
+	<br>
+
+	<script src="/app.js"></script>
+	<script src="node_modules/image-to-base64/image-to-base64.min.js"></script>
+	<script>
+		function getId() {
+			addEventListener('click', function (ev) {
+				if(ev.target.name === 'check'){
+					document.getElementById('numcorrida').submit()
+				}else{
+					document.getElementById('back').submit()
+				}
+			})
+
+		}
+	</script>
+
+</body>
+
+</html>

@@ -2,10 +2,12 @@ var path = require('path');
 var rootPath = path.join(__dirname, '../../');
 var fs = require('fs');
 var CorridaBs = require('../business/corrida.bs');
+const image2base64 = require('image-to-base64');
 const util = require('util')
 
 const readDirPromise = util.promisify(fs.readdir);
 const renamePromise = util.promisify(fs.rename)
+const readFilePromise = util.promisify(fs.readFile)
 
 
 module.exports.list = async (req, res) =>{
@@ -115,6 +117,7 @@ async function getDirectories(path ) {
 		await renamePromise(file, dest);
 	};
 
+	console.log('fileName :', fileName);
 	await moveFile(fileName, dirDelete);
 
 	res.render('corrida-delete', {
@@ -122,3 +125,48 @@ async function getDirectories(path ) {
 			})
 };
 
+
+module.exports.showImage = async (req, res) => {
+	target = req.body.id - 1
+	position = Math.abs(req.body.position + 1)
+	if (target > 0 && target < 10) target = '00' + target
+	if (target > 9 && target < 100) target = '0' + target
+
+	var path = rootPath + "corridas/Corrida_" + position + "/tags_images/barcode-00" + target + ".jpg"
+	var numCorrida = rootPath + "corridas/Corrida_" + position + "/tags_json/tag-" + target + ".json"
+	
+	const img = await image2base64(path);
+	let result = await readFilePromise(numCorrida, 'utf8');
+	result = JSON.parse(result);
+	numCorrida = result[0].num
+
+	res.render('show-image', {
+		id: target,
+		img: img, 
+		numCorrida: numCorrida
+	})
+}
+
+module.exports.editImage = (req, res) => {
+console.log('req :', req.body);
+
+
+	// target = req.body.id - 1
+	// position = Math.abs(req.body.position + 1)
+	// if (target > 0 && target < 10) target = '00' + target
+	// if (target > 9 && target < 100) target = '0' + target
+
+	// var path = rootPath + "corridas/Corrida_" + position + "/tags_images/barcode-00" + target + ".jpg"
+	// var numCorrida = rootPath + "corridas/Corrida_" + position + "/tags_json/tag-" + target + ".json"
+	
+	// const img = await image2base64(path);
+	// let result = await readFilePromise(numCorrida, 'utf8');
+	// result = JSON.parse(result);
+	// numCorrida = result[0].num
+
+	// res.render('detail-image', {
+	// 	id: target,
+	// 	img: img, 
+	// 	numCorrida: numCorrida
+	// })
+}

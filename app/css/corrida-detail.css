@@ -4,7 +4,6 @@ body {
 
 th,
 td {
-	padding: 10px;
 	border: 1px solid black;
 	border-collapse: collapse;
 }
@@ -180,5 +179,46 @@ h1 {
 	top: 0%;
 }
 
+
+
+.buttonsW a.button.wiggle:after {
+	content: '\f054';
+	font-family: FontAwesome;
+	display: inline-block;
+	max-width: 0;
+	margin-left: 0px;
+	position: relative;
+	z-index: 2;
+	color: rgba(255, 255, 255, 0);
+	left: -50px;
+}
+
+.buttonsW a.button.wiggle:hover {
+	background: #53af09;
+	color: black;
+}
+
+.buttonsW a.button.wiggle:hover:after {
+	max-width: 100px;
+	margin-left: 10px;
+	left: 0px;
+		color: black;
+
+	animation: wiggle 1s 0.25s ease-in-out infinite;
+}
+
+
+.buttonsW a.button {
+	display: inline-block;
+	margin: 25px;
+	background: #20292c;
+	color: white;
+	padding: 6px;
+	text-decoration: none;
+	font-family: helvetica neue, helvetica, arial, sans-serif;
+	position: relative;
+	transition: 0.25s ease-in-out;
+	border-radius: 3px;
+}
 
 

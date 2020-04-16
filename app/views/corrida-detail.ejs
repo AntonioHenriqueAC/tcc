@@ -16,6 +16,7 @@
     margin-top: -0.6%;" name="back" class="button back" onClick="getId()"><span>Voltar</span></a>
 	</form>
 
+
 	<h1 style="margin-top: -3%;">Detalhe da Corrida</h1>
 
 	<table class="table">
@@ -45,11 +46,23 @@
 			<th> Número</th>
 			<th>Acurácia</th>
 		</tr>
-		<% for(var i=1; i<tags; i++){ %>
+		<% var j=1;%>
+		<% for(var i=0; i<tags; i++){ %>
 			<tr>
 				<th class="datas"><%= corrida[i].id %> </th>
 				<th class="datas"><%= corrida[i].num %> </th>
 				<th class="datas"><%= corrida[i].acc.toFixed(3) %> </th>
+				<th>
+					<form method="post" action="/show-image" class="buttonsW" 
+							style="margin: 8px 15px 8px 8px;" id="image">
+						<input hidden id="myIdDelete" name="id" type	="text" value="OPA">
+						<input hidden value="<%= position %>" name="position">
+					
+						<a type="submit" style="cursor: pointer; margin: 0;" id="<%= j++ %>"
+							name="image" class="button wiggle" form="image"
+							onClick="getId()"><span>Image</span></a>
+					</form>
+				</th>
 			</tr>
 		<% } %>
 
@@ -68,17 +81,25 @@
 	<br>
 
 	<script src="/app.js"></script>
-
+	<script src="node_modules/image-to-base64/image-to-base64.min.js"></script>
 	<script>
 		function getId() {
 			addEventListener('click', function (ev) {
-				if(ev.target.name === 'check'){
+			 var ident = ev.target.id;
+				switch (ev.target.name) {
+				case 'check':
 					document.getElementById('check').submit()
-				}else{
+					break;
+				case 'back':
 					document.getElementById('back').submit()
-				}
-			})
-
+					break;
+				case 'image':
+					document.getElementById("myIdDelete").value = ident;
+					document.getElementById('image').submit()
+					break;
+				default:
+					break;
+				}})
 		}
 	</script>
 </body>
