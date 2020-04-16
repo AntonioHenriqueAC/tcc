@@ -12,8 +12,12 @@
 
 <body>
 	<form method="post" action="/" class="buttons" id="back">
-		<a type="submit" style="cursor: pointer; margin-left: -94%;
-    margin-top: -0.6%;" name="back" class="button back" onClick="getId()"><span>Voltar</span></a>
+		<a type="submit" 
+			style="cursor: pointer; margin-left: -94%; margin-top: -0.6%;" 
+			name="back" 
+			class="button back" 
+			onClick="getId()">
+		<span>Voltar</span></a>
 	</form>
 
 
@@ -52,15 +56,23 @@
 				<th class="datas"><%= corrida[i].id %> </th>
 				<th class="datas"><%= corrida[i].num %> </th>
 				<th class="datas"><%= corrida[i].acc.toFixed(3) %> </th>
+
 				<th>
-					<form method="post" action="/show-image" class="buttonsW" 
-							style="margin: 8px 15px 8px 8px;" id="image">
+					<form method="post" action="/show-image" 
+							class="buttonsW" 
+							style="margin: 8px 15px 8px 8px;" 
+							id="image">
 						<input hidden id="myIdDelete" name="id" type	="text" value="OPA">
 						<input hidden value="<%= position %>" name="position">
 					
-						<a type="submit" style="cursor: pointer; margin: 0;" id="<%= j++ %>"
-							name="image" class="button wiggle" form="image"
-							onClick="getId()"><span>Image</span></a>
+						<a type="submit" 
+							style="cursor: pointer; margin: 0;" 
+							id="<%= j++ %>"
+							name="image" 
+							class="button wiggle" 
+							form="image"
+							onClick="getId()">
+							<span>Image</span></a>
 					</form>
 				</th>
 			</tr>
@@ -77,7 +89,7 @@
 		<input hidden value="<%= position %>" name="position">
 		<a type="submit" style="cursor: pointer; font-size: 25px;" class="button mail" form="check" name="check" onClick="getId()"><span>Despachar</span></a>
 	</form>
-
+	<br>
 	<br>
 
 	<script src="/app.js"></script>

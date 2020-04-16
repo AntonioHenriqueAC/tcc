@@ -12,6 +12,7 @@
 
 <body>
 	<form method="POST" action="/corrida-detail" class="buttons" id="back">
+		<input hidden value="<%= position %>" name="id">
 		<a type="submit" style="cursor: pointer; margin-left: -94%;
     margin-top: -0.6%;" name="back" class="button back" onClick="getId()"><span>Voltar</span></a>
 	</form>
@@ -29,14 +30,17 @@
 
 		<tr >
 			<th class="data" style="font-size:50px ">
-				<input 	 style="font-size:50px; size: 50px; width: 49%; text-align: center;" 
-							 value="<%= numCorrida %>"
-							 id="numcorrida"
-							 name="tag">
+				<form method="post" action="/edit-image" id="numcorrida">
+				<input 	 style="font-size:50px; size: 50px; width: 57%; text-align: center;" 
+								value="<%= numCorrida %>"
+								id="numcorrida"
+								name="num">
+				<input hidden value="<%= position %>" name="id">
+				<input hidden value="<%= id %>" name="target">
+				</form>
 				</th>
-			
 			<th>
-				<img src="data:image/jpeg;base64,<%= img %>">
+				<img style="margin: 29px;" src="data:image/jpeg;base64,<%= img %>">
 			</th>
 		</tr>
 	</table>
@@ -44,13 +48,15 @@
 	<br>
 	<br>
 
-	<form method="post" action="/edit-image" id="numcorrida" class="buttons">
+	<form  class="buttons">
 		<a type="submit" 
 			style="cursor: pointer; font-size: 25px;" 
 			class="button mail" 
 			form="numcorrida" 
 			name="numcorrida"
-			onClick="getId()"><span>Salvar</span></a>
+			onClick="getId()">
+			<span>Salvar</span>
+		</a>
 	</form>
 
 	<br>
@@ -60,7 +66,7 @@
 	<script>
 		function getId() {
 			addEventListener('click', function (ev) {
-				if(ev.target.name === 'check'){
+				if(ev.target.name === 'numcorrida'){
 					document.getElementById('numcorrida').submit()
 				}else{
 					document.getElementById('back').submit()

@@ -129,7 +129,7 @@ async function getDirectories(path ) {
 module.exports.showImage = async (req, res) => {
 	target = req.body.id - 1
 	position = Math.abs(req.body.position + 1)
-	if (target > 0 && target < 10) target = '00' + target
+	if (target >= 0 && target < 10) target = '00' + target
 	if (target > 9 && target < 100) target = '0' + target
 
 	var path = rootPath + "corridas/Corrida_" + position + "/tags_images/barcode-00" + target + ".jpg"
@@ -143,30 +143,39 @@ module.exports.showImage = async (req, res) => {
 	res.render('show-image', {
 		id: target,
 		img: img, 
-		numCorrida: numCorrida
+		numCorrida: numCorrida,
+		position: position
 	})
 }
 
-module.exports.editImage = (req, res) => {
-console.log('req :', req.body);
+module.exports.editImage = async (req, res) => {
+	var corrida = new CorridaBs(req);
+
+	var numCorrida = rootPath + "corridas/Corrida_" + req.body.id + "/tags_json/tag-" + req.body.target + ".json"
+
+	let result = await readFilePromise(numCorrida, 'utf8');
+	result = JSON.parse(result);
+	result[0].num = req.body.num
 
 
-	// target = req.body.id - 1
-	// position = Math.abs(req.body.position + 1)
-	// if (target > 0 && target < 10) target = '00' + target
-	// if (target > 9 && target < 100) target = '0' + target
+	fs.writeFile(numCorrida, JSON.stringify(result), function writeJSON(err) {
+		if (err) return console.log(err);
+	});
 
-	// var path = rootPath + "corridas/Corrida_" + position + "/tags_images/barcode-00" + target + ".jpg"
-	// var numCorrida = rootPath + "corridas/Corrida_" + position + "/tags_json/tag-" + target + ".json"
-	
-	// const img = await image2base64(path);
-	// let result = await readFilePromise(numCorrida, 'utf8');
-	// result = JSON.parse(result);
-	// numCorrida = result[0].num
 
-	// res.render('detail-image', {
-	// 	id: target,
-	// 	img: img, 
-	// 	numCorrida: numCorrida
-	// })
+	await callDetailPage();
+	async function callDetailPage() {
+		let detail = await corrida.list();
+		await corrida.groupCorridaDetail(req);
+		let data = await corrida.listTags(req);
+
+		const position = req.body.id - 1
+		detail = detail[position]
+		res.render('corrida-detail', {
+			corrida: data,
+			tags: data.length,
+			detail: detail,
+			position: position
+		})
+	}
 }
