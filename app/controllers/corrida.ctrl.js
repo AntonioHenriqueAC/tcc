@@ -34,6 +34,7 @@ module.exports.detailPage = async (req, res) => {
 			let data = await corrida.listTags(req);
 
 			const position = req.body.id - 1
+
 			detail = detail[position]
 			res.render('corrida-detail',{
 				corrida: data,
@@ -117,7 +118,6 @@ async function getDirectories(path ) {
 		await renamePromise(file, dest);
 	};
 
-	console.log('fileName :', fileName);
 	await moveFile(fileName, dirDelete);
 
 	res.render('corrida-delete', {
@@ -128,7 +128,12 @@ async function getDirectories(path ) {
 
 module.exports.showImage = async (req, res) => {
 	target = req.body.id - 1
-	position = Math.abs(req.body.position + 1)
+	position = parseInt(req.body.position) + 1
+//  console.log('position :', position);
+// 	position = Math.abs(req.body.position + 1)
+
+
+
 	if (target >= 0 && target < 10) target = '00' + target
 	if (target > 9 && target < 100) target = '0' + target
 

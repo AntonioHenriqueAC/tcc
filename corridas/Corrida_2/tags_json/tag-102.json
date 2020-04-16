@@ -1,5 +1,10 @@
 [
     {
+        "num": "2810899202777",
+        "id": 102,
+        "acc": 98.25286039939293
+    },
+    {
         "name": "2",
         "percentage_probability": 99.68104958534241,
         "box_points": [
@@ -67,7 +72,7 @@
     },
     {
         "name": "9",
-        "percentage_probability": 91.47513508796692,
+        "percentage_probability": 91.4751648902893,
         "box_points": [
             97,
             60,
@@ -141,14 +146,5 @@
             77
         ],
         "alert": "false"
-    },
-    {
-        "media": 98.2528581069066
-    },
-    {
-        "imagem": 102
-    },
-    {
-        "numero": "2810899202777"
     }
 ]

@@ -1,5 +1,10 @@
 [
     {
+        "num": "2810891202788",
+        "id": "049",
+        "acc": 99.53951377135057
+    },
+    {
         "name": "2",
         "percentage_probability": 99.9000072479248,
         "box_points": [
@@ -56,7 +61,7 @@
     },
     {
         "name": "9",
-        "percentage_probability": 99.61735606193542,
+        "percentage_probability": 99.61736798286438,
         "box_points": [
             89,
             59,
@@ -141,14 +146,5 @@
             76
         ],
         "alert": "false"
-    },
-    {
-        "media": 99.53951285435603
-    },
-    {
-        "imagem": "049"
-    },
-    {
-        "numero": "2810891202788"
     }
 ]

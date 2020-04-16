@@ -1,5 +1,10 @@
 [
     {
+        "num": "2811204702730",
+        "id": "083",
+        "acc": 98.47332560099088
+    },
+    {
         "name": "2",
         "percentage_probability": 99.93063807487488,
         "box_points": [
@@ -67,7 +72,7 @@
     },
     {
         "name": "4",
-        "percentage_probability": 90.00996351242065,
+        "percentage_probability": 90.00997543334961,
         "box_points": [
             103,
             55,
@@ -141,14 +146,5 @@
             77
         ],
         "alert": "true"
-    },
-    {
-        "media": 98.47332468399635
-    },
-    {
-        "imagem": "083"
-    },
-    {
-        "numero": "2811204702730"
     }
 ]

@@ -1,5 +1,10 @@
 [
     {
+        "num": "2811209702754",
+        "id": "072",
+        "acc": 99.32483251278217
+    },
+    {
         "name": "2",
         "percentage_probability": 99.95421767234802,
         "box_points": [
@@ -67,7 +72,7 @@
     },
     {
         "name": "9",
-        "percentage_probability": 95.3637421131134,
+        "percentage_probability": 95.36375999450684,
         "box_points": [
             87,
             51,
@@ -141,14 +146,5 @@
             70
         ],
         "alert": "false"
-    },
-    {
-        "media": 99.32483113729037
-    },
-    {
-        "imagem": "072"
-    },
-    {
-        "numero": "2811209702754"
     }
 ]
