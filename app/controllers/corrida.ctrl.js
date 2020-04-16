@@ -31,45 +31,57 @@ module.exports.detailPage = async (req, res) => {
 			await corrida.groupCorridaDetail(req);
 			let data = await corrida.listTags(req);
 
-			detail = detail[req.body.id -1]
-   console.log('detail :', detail);
+			const position = req.body.id - 1
+			detail = detail[position]
 			res.render('corrida-detail',{
 				corrida: data,
 				tags: data.length,
-				detail: detail
+				detail: detail,
+				position: position
 			})
 		}
 }
 
 
-module.exports.checkCorrida = (req, res) => {
-	var fileName = rootPath + '/config/database.json';
-	var corrida = new CorridaBs();
+module.exports.checkCorrida = async (req, res) => {
+	
+	let corrida = new CorridaBs();
+	let targetCorrida = req.body.position;
+	let dir = rootPath + 'corridas/config/';
 
-	corrida.list((err, result, integerJSON) => {
-		if (err) throw console.log("err", err);
+	async function getDirectories(path) {
+		const files = await readDirPromise(path);
+		const file = parseInt(targetCorrida) 
+		let nameFile = files[file];
 
-		var targetCorrida = req.body.id;
-		var corrida = result[targetCorrida]
-		var corridaStatus = corrida.status;
-		
-		integerJSON.corridas[targetCorrida - 4].status = "Despachada"
-
-		fs.writeFile(fileName, JSON.stringify(integerJSON), function writeJSON(err) {
-			if (err) return console.log(err);
-			console.log(JSON.stringify(integerJSON));
-			console.log('writing to ' + fileName);
-		});
-
-		if (corridaStatus == "Despachada") {
-			res.render('corrida-desp');
-		} else {
-			res.render('corrida-check', {
-			corrida: corrida.nuMCorrida
+		return new Promise((resolve) => {
+			resolve(path + nameFile);
 		})
-}
+	}
+	const fileName = await getDirectories(dir)
 
-	});
+	
+	await callCheckCorrida();
+	async function callCheckCorrida() {
+			let resultFull = await corrida.list();
+
+			result = resultFull[targetCorrida]
+			var corridaStatus = result.status;
+		
+			result.Status = "Despachada"
+
+			fs.writeFile(fileName, JSON.stringify(result), function writeJSON(err) {
+				if (err) return console.log(err);
+			});
+
+			if (corridaStatus == "Despachada") {
+				res.render('corrida-desp');
+			} else {
+				res.render('corrida-check', {
+				corrida: result.nuMCorrida
+				})
+			}
+	}
 
 }
 
