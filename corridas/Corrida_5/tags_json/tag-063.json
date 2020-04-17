@@ -2,7 +2,8 @@
     {
         "num": "2811209702764",
         "id": "063",
-        "acc": 98.87154973470248
+        "acc": 98.87154973470248,
+        "alert": "true"
     },
     {
         "name": "2",
@@ -28,7 +29,7 @@
     },
     {
         "name": "1",
-        "percentage_probability": 99.64863657951355,
+        "percentage_probability": 99.6486485004425,
         "box_points": [
             67,
             77,
@@ -72,7 +73,7 @@
     },
     {
         "name": "9",
-        "percentage_probability": 98.50322604179382,
+        "percentage_probability": 98.50320219993591,
         "box_points": [
             93,
             76,
@@ -127,7 +128,7 @@
     },
     {
         "name": "6",
-        "percentage_probability": 97.61658310890198,
+        "percentage_probability": 97.61659502983093,
         "box_points": [
             137,
             75,

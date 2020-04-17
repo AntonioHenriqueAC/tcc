@@ -2,43 +2,49 @@
     {
         "numCorrida": "2810879302716",
         "status": "Inadimplente",
-        "acc": 99.56547320644837,
+        "acc": 99.56547310567973,
         "qte": 91
     },
     {
         "numCorrida": "2810899202777",
         "status": "Inadimplente",
-        "acc": 99.50268856619078,
+        "acc": 99.50268839258499,
         "qte": 103
     },
     {
         "numCorrida": "2810879302716",
         "status": "Inadimplente",
-        "acc": 99.64458163986858,
+        "acc": 99.64458143609203,
         "qte": 90
     },
     {
         "numCorrida": "2810879302716",
         "status": "Inadimplente",
-        "acc": 99.58873140237539,
+        "acc": 99.58873136206793,
         "qte": 91
     },
     {
         "numCorrida": "2811209702730",
         "status": "Inadimplente",
-        "acc": 99.24678334734843,
+        "acc": 99.24678325917587,
         "qte": 104
     },
     {
         "numCorrida": "2811209702730",
         "status": "Inadimplente",
-        "acc": 99.29816851961341,
+        "acc": 99.29816826143046,
         "qte": 103
     },
     {
         "numCorrida": "2811089702720",
-        "status": "Despachada",
-        "acc": 99.20655361999424,
+        "status": "Inadimplente",
+        "acc": 99.20655359354247,
         "qte": 104
+    },
+    {
+        "numCorrida": "2811209702735",
+        "status": "Inadimplente",
+        "acc": 99.10097963556296,
+        "qte": 107
     }
 ]

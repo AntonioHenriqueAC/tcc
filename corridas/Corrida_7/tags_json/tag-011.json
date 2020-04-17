@@ -2,7 +2,8 @@
     {
         "num": "2811209702718",
         "id": "011",
-        "acc": 99.55783990713266
+        "acc": 99.55783899013812,
+        "alert": "false"
     },
     {
         "name": "2",
@@ -50,7 +51,7 @@
     },
     {
         "name": "2",
-        "percentage_probability": 99.7290313243866,
+        "percentage_probability": 99.72901940345764,
         "box_points": [
             89,
             69,
