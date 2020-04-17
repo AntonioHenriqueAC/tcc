@@ -72,11 +72,11 @@ Corrida.prototype.listHome = async () => {
 
 	// utility function, return Promise
 	function getFile(filename) {
-		return readFileAsync(rootPath +'/corridas/config/'+filename, 'utf8');
+		return readFileAsync(rootPath + 'server/corridas_config/config/' + filename, 'utf8');
 	}
 
 	// example of using promised version of getFile
-	// getFile(rootPath + '/corridas/config/config_1.json', 'utf8').then(function (data) {
+	// getFile(rootPath + '/corridas_config/config/config_1.json', 'utf8').then(function (data) {
 	// console.log(data);
 	// });
 
@@ -93,7 +93,7 @@ Corrida.prototype.listHome = async () => {
 	
 	return new Promise(async (resolve, reject) => {
 		// read all json files in the directory, filter out those needed to process, and using Promise.all to time when all async readFiles has completed. 
-		let filenames = await readdirAsync(rootPath + '/corridas/config')
+		let filenames = await readdirAsync(rootPath + 'server/corridas_config/config')
 		filenames = filenames.filter(isDataFile);
 		let files = await Promise.all(filenames.map(getFile));
 
@@ -119,8 +119,8 @@ Corrida.prototype.listHome = async () => {
 Corrida.prototype.groupCorridaDetail = async (req) => {
 
 var target = parseInt(req.body.id);
-var targetDir = rootPath + 'corridas/Corrida_' + target + '/tags_json/'
-var targetDirCorrida = rootPath + 'corridas/Corrida_' + target + '/'
+var targetDir = rootPath + 'server/corridas/Corrida_' + target + '/tags_json/'
+var targetDirCorrida = rootPath + 'server/corridas/Corrida_' + target + '/'
 
 // make Promise version of fs.readdir()
 const readdirAsync = function (dirname) {
@@ -186,7 +186,7 @@ resolve()
 
 Corrida.prototype.listTags = async (req) => {
 var target = parseInt(req.body.id);
-path = rootPath + '/corridas/Corrida_' + target + '/database.json'
+path = rootPath + 'server/corridas/Corrida_' + target + '/database.json'
 
 let result = await readFilePromise(path, 'utf8');
 

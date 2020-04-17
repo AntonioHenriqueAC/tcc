@@ -50,7 +50,7 @@ module.exports.checkCorrida = async (req, res) => {
 	
 	let corrida = new CorridaBs();
 	let targetCorrida = req.body.position;
-	let dir = rootPath + 'corridas/config/';
+	let dir = rootPath + 'server/corridas/config/';
 
 	async function getDirectories(path) {
 		const files = await readDirPromise(path);
@@ -91,8 +91,8 @@ module.exports.checkCorrida = async (req, res) => {
 module.exports.deleteCorrida = async (req, res) => {
 var corrida = new CorridaBs();
 
-var dir = rootPath + 'corridas/config/';
-var dirDelete = rootPath + 'corridas/deleted/';
+var dir = rootPath + 'server/corridas/config/';
+var dirDelete = rootPath + 'server/corridas/deleted/';
 
 
 async function getDirectories(path ) {
@@ -134,8 +134,8 @@ module.exports.showImage = async (req, res) => {
 	if (target >= 0 && target < 10) target = '00' + target
 	if (target > 9 && target < 100) target = '0' + target
 
-	var path = rootPath + "corridas/Corrida_" + position + "/tags_images/barcode-00" + target + ".jpg"
-	var numCorrida = rootPath + "corridas/Corrida_" + position + "/tags_json/tag-" + target + ".json"
+	var path = rootPath + "server/corridas/Corrida_" + position + "/tags_images/barcode-00" + target + ".jpg"
+	var numCorrida = rootPath + "server/corridas/Corrida_" + position + "/tags_json/tag-" + target + ".json"
 	
 	const img = await image2base64(path);
 	let result = await readFilePromise(numCorrida, 'utf8');
@@ -153,7 +153,7 @@ module.exports.showImage = async (req, res) => {
 module.exports.editImage = async (req, res) => {
 	var corrida = new CorridaBs(req);
 
-	var numCorrida = rootPath + "corridas/Corrida_" + req.body.id + "/tags_json/tag-" + req.body.target + ".json"
+	var numCorrida = rootPath + "server/corridas/Corrida_" + req.body.id + "/tags_json/tag-" + req.body.target + ".json"
 
 	let result = await readFilePromise(numCorrida, 'utf8');
 	result = JSON.parse(result);
