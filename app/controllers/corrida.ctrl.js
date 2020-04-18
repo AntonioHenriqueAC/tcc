@@ -4,6 +4,7 @@ var fs = require('fs');
 var CorridaBs = require('../business/corrida.bs');
 const image2base64 = require('image-to-base64');
 const util = require('util')
+var multer = require('multer');
 
 const readDirPromise = util.promisify(fs.readdir);
 const renamePromise = util.promisify(fs.rename)
@@ -182,33 +183,51 @@ module.exports.editImage = async (req, res) => {
 	}
 }
 
+module.exports.editImage = async (req, res) => {
+const path = rootPath + "server/images"
+const filesLenght = await readDirPromise(path);
 
-module.exports.buttonPy = async (req, res) => {
-
-let runPy = new Promise(function (success, nosuccess) {
-
-	const {
-		spawn
-	} = require('child_process');
-	const pyprog = spawn('python', [rootPath + '/recognize.py']);
-
-	pyprog.stdout.on('data', function (data) {
-
-		success(data);
-	});
-
-	pyprog.stderr.on('data', (data) => {
-
-		nosuccess(data);
-	});
+var storage = multer.diskStorage({
+	destination: function (req, file, callback) {
+		callback(null, './server/images');
+	},
+	filename: function (req, file, callback) {
+		callback(null, file.fieldname + (filesLenght.length + 1) + '.jpg');
+	}
 });
 
+var upload = multer({storage: storage}).single('img');
 
-	res.write('welcome\n');
-	runPy.then(function (fromRunpy) {
-		console.log(fromRunpy.toString());
-		res.end(fromRunpy);
+upload(req, res, function (err) {
+	if (err) {
+			return res.end("Error uploading file.");
+		}
 	});
 
+	// let runPy = new Promise(function (success, nosuccess) {
 
+	// 	const {
+	// 		spawn
+	// 	} = require('child_process');
+	// 	const pyprog = spawn('python', [rootPath + '/recognize.py']);
+
+	// 	pyprog.stdout.on('data', function (data) {
+
+	// 		success(data);
+	// 	});
+
+	// 	pyprog.stderr.on('data', (data) => {
+
+	// 		nosuccess(data);
+	// 	});
+	// });
+
+
+	// res.write('welcome\n');
+	// runPy.then(function (fromRunpy) {
+	// 	console.log(fromRunpy.toString());
+	// 	res.end(fromRunpy);
+	// });
+	
+	res.redirect("/")
 }

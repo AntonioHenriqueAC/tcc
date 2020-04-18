@@ -29,6 +29,7 @@
     "count-files": "^2.6.2",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "formidable": "^1.2.2",
     "fs": "0.0.1-security",
     "image-to-base64": "^2.0.1",
