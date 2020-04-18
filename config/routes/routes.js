@@ -3,6 +3,7 @@ var router = express.Router();
 
 var corridaCtrl = require('../../app/controllers/corrida.ctrl');
 
+router.post('/py', corridaCtrl.buttonPy)
 router.get('/', corridaCtrl.list)
 router.post('/', corridaCtrl.list)
 router.post('/corrida-detail', corridaCtrl.detailPage)

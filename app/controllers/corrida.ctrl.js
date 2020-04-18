@@ -18,7 +18,7 @@ module.exports.list = async (req, res) =>{
 		await corrida.listHome();
 		const data = await corrida.list();
 			res.render('list', {
-				corrida: data
+			corrida: data
 			})
 	}
 
@@ -152,25 +152,25 @@ module.exports.showImage = async (req, res) => {
 
 module.exports.editImage = async (req, res) => {
 	var corrida = new CorridaBs(req);
-
+	
 	var numCorrida = rootPath + "server/corridas/Corrida_" + req.body.id + "/tags_json/tag-" + req.body.target + ".json"
-
+	
 	let result = await readFilePromise(numCorrida, 'utf8');
 	result = JSON.parse(result);
 	result[0].num = req.body.num
-
-
+	
+	
 	fs.writeFile(numCorrida, JSON.stringify(result), function writeJSON(err) {
 		if (err) return console.log(err);
 	});
-
-
+	
+	
 	await callDetailPage();
 	async function callDetailPage() {
 		let detail = await corrida.list();
 		await corrida.groupCorridaDetail(req);
 		let data = await corrida.listTags(req);
-
+		
 		const position = req.body.id - 1
 		detail = detail[position]
 		res.render('corrida-detail', {
@@ -180,4 +180,35 @@ module.exports.editImage = async (req, res) => {
 			position: position
 		})
 	}
+}
+
+
+module.exports.buttonPy = async (req, res) => {
+
+let runPy = new Promise(function (success, nosuccess) {
+
+	const {
+		spawn
+	} = require('child_process');
+	const pyprog = spawn('python', [rootPath + '/recognize.py']);
+
+	pyprog.stdout.on('data', function (data) {
+
+		success(data);
+	});
+
+	pyprog.stderr.on('data', (data) => {
+
+		nosuccess(data);
+	});
+});
+
+
+	res.write('welcome\n');
+	runPy.then(function (fromRunpy) {
+		console.log(fromRunpy.toString());
+		res.end(fromRunpy);
+	});
+
+
 }
