@@ -152,6 +152,8 @@ module.exports.showImage = async (req, res) => {
 }
 
 module.exports.editImage = async (req, res) => {
+
+ console.log(' CHEGA AQUI ???' );
 	var corrida = new CorridaBs(req);
 	
 	var numCorrida = rootPath + "server/corridas/Corrida_" + req.body.id + "/tags_json/tag-" + req.body.target + ".json"
@@ -183,7 +185,7 @@ module.exports.editImage = async (req, res) => {
 	}
 }
 
-module.exports.editImage = async (req, res) => {
+module.exports.scriptPy = async (req, res) => {
 const path = rootPath + "server/images"
 const filesLenght = await readDirPromise(path);
 

@@ -10,6 +10,6 @@ router.post('/corrida-check', corridaCtrl.checkCorrida)
 router.post('/corrida-delete', corridaCtrl.deleteCorrida)
 router.post('/show-image', corridaCtrl.showImage)
 router.post('/edit-image', corridaCtrl.editImage)
-router.post('/upload-photo', corridaCtrl.editImage)
+router.post('/upload-photo', corridaCtrl.scriptPy)
 
 module.exports = router;
