@@ -1,3 +1,4 @@
 node_modules/
 LaTex/
 package-lock.json
+server/config/models/
