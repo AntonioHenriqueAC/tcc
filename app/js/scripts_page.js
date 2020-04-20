@@ -111,4 +111,4 @@ function getId() {
 			document.getElementById('delete').submit()
 		}
 	})
-} 
+}
