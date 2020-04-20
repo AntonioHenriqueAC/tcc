@@ -1,5 +1,4 @@
 node_modules/
 LaTex/
 package-lock.json
-server/config/models/barcode/detection_model-ex-013--loss-0001.995.h5
-server/config/models/number/detection_model-ex-034--loss-0012.508.h5
+server/config/models/

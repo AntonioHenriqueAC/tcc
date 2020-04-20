@@ -204,30 +204,23 @@ upload(req, res, function (err) {
 		}
 	});
 
-	// let runPy = new Promise(function (success, nosuccess) {
+let runPy = new Promise(function (success, nosuccess) {
 
-	// 	const {
-	// 		spawn
-	// 	} = require('child_process');
-	// 	const pyprog = spawn('python', [rootPath + '/recognize.py']);
+	const spawn = require("child_process").spawn;
+	const pyprog = spawn('python', [rootPath + '/recognize.py']);
 
-	// 	pyprog.stdout.on('data', function (data) {
+	pyprog.stderr.on('data', function (data) {
+		success(data);
+	});
 
-	// 		success(data);
-	// 	});
+	pyprog.stdout.on('data', (data) => {
+		nosuccess(data);
+	});
+});
 
-	// 	pyprog.stderr.on('data', (data) => {
-
-	// 		nosuccess(data);
-	// 	});
-	// });
-
-
-	// res.write('welcome\n');
-	// runPy.then(function (fromRunpy) {
-	// 	console.log(fromRunpy.toString());
-	// 	res.end(fromRunpy);
-	// });
-	
+runPy.then(function (fromRunpy) {
 	res.redirect("/")
+});
+
+
 }
