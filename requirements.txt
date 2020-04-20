@@ -1,5 +1,5 @@
 tensorflow-gpu==1.13.1
-imageai --upgrade
+imageai
 keras
 numpy
 pillow
