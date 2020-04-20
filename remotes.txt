@@ -1,0 +1,6 @@
+
+heroku 
+https://git.heroku.com/recognize-barcode-number.git
+
+github
+git@github.com:AntonioHenriqueAC/Barcode_Number-Recognition.git
