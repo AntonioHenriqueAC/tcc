@@ -206,23 +206,52 @@ upload(req, res, function (err) {
 		}
 	});
 
-let runPy = new Promise(function (success, nosuccess) {
+// let runPy = new Promise(function (success, nosuccess) {
 
-	const spawn = require("child_process").spawn;
-	const pyprog = spawn('python', [rootPath + '/recognize.py']);
+// 	const spawn = require("child_process").spawn;
+// 	const pyprog = spawn('python', [rootPath + '/recognize.py']);
+	
+// 	pyprog.stderr.on('data', function (data) {
+// 	console.log('data error:', data);
+// 		nosuccess(data);
+// 	});
 
-	pyprog.stderr.on('data', function (data) {
-		success(data);
-	});
+// 	pyprog.stdout.on('data', (data) => {
+//  	console.log('data success:', data);
+// 		success(data);
+// 	});
+// });
 
-	pyprog.stdout.on('data', (data) => {
-		nosuccess(data);
-	});
-});
 
-runPy.then(function (fromRunpy) {
-	res.redirect("/")
-});
+let runPy = async (success, nosuccess) => {
 
+    const { spawn } = require('child_process');
+    const pyprog = await spawn('python', [rootPath + '/recognize.py'], {shell: true}); // add shell:true so node will spawn it with your system shell.
+
+    let storeLines = []; // store the printed rows from the script
+    let storeErrors = []; // store errors occurred
+    pyprog.stdout.on('data', function (data) {
+    console.log('data 1 :', data);
+      storeLines.push(data);
+    });
+
+    pyprog.stderr.on('data', (data) => {
+    console.log('data 2 :', data);
+      storeErrors.push(data);
+	 });
+	 
+    await pyprog.on('close', () => {
+      // if we have errors will reject the promise and we'll catch it later
+      if (storeErrors.length) {
+        nosuccess(new Error(Buffer.concat(storeErrors).toString()));
+      } else {
+        success(storeLines);
+      }
+    });
+};
+
+
+await runPy()
+await res.redirect('/');
 
 }

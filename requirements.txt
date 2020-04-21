@@ -1,9 +1,9 @@
 tensorflow-gpu==1.15.2
 imageai
 numpy
-pillow
 scipy
 h5py
+keras
 matplotlib
 opencv-python
 prettytable
