@@ -1,6 +1,5 @@
 tensorflow-gpu==1.15.2
 imageai
-keras
 numpy
 pillow
 scipy
