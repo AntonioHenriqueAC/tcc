@@ -1,4 +1,5 @@
-# importando as bibliotecas
+# -*- Coding: UTF-8 -*-
+#coding: utf-8
 
 'exec(%matplotlib inline)'
 from imageai.Detection.Custom import CustomObjectDetection

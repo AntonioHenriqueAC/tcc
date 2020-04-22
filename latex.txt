@@ -1,0 +1,34 @@
+INTRODUÇÃO
+
+- apresenta o problema: produção de tarugos, estocagem dos tarugos, rotulização (como e porque é feita), problemas atuais (focar nos problemas relacionados a identificação visual)
+- objetivo 
+- organização do trabalho (este trabalho está organizado da seguinte mandeira, o capitulo 2 trata sobre...)
+
+
+REVISÃO BIBLIOGRÁFICA
+
+- 5 trabalhados relacionados (identificação visual automática na indústria usando machine learning, identificação de labels na indústria, algo a ver com tarugos)
+Escrever um ou dois parágrafo para cada (1 paragrafo explicando problema da pessoa e o 2 paragrafo explicando como ele resolveu e resultado)
+
+Mvisia
+
+ALGORITMO DE DETECÇÃO (MOTOR DA APLICAÇÃO)
+
+- criação do banco de dados
+- detecção do barcode
+- detecção do número
+
+
+APLICAÇÃO
+
+- backend
+- frontend
+
+RESULTADOS
+
+- alimenta o sistema com dados
+- mostra o resultado das detecções
+- mostra frontend
+
+
+CONCLUSÃO

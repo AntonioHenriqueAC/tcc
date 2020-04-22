@@ -209,7 +209,7 @@ upload(req, res, function (err) {
 let runPy = new Promise(function (success, nosuccess) {
 
 	const {spawn} = require('child_process');
-	const pyprog =	 spawn('python', [rootPath + '/recognize.py'], {shell: true}); // add shell:true so node will spawn it with your system shell.
+	const pyprog =	 spawn('python', [rootPath + 'recognize.py'], {shell: true}); // add shell:true so node will spawn it with your system shell.
 
 	let storeLines = []; // store the printed rows from the script
 	let storeErrors = []; // store errors occurred
@@ -223,9 +223,9 @@ let runPy = new Promise(function (success, nosuccess) {
 
 	 pyprog.on('close', () => {
 		if (storeErrors.length) {
-			nosuccess && nosuccess(new Error(Buffer.concat(storeErrors).toString()));
+			nosuccess(new Error(Buffer.concat(storeErrors).toString()));
 		} else {
-			success && success(storeLines);
+			success(storeLines);
 		}
 	});
 });
