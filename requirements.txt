@@ -4,6 +4,7 @@ numpy
 scipy
 h5py
 keras
+scikit-image
 matplotlib
 opencv-python
 prettytable

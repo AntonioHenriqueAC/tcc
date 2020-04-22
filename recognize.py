@@ -1,6 +1,6 @@
 # importando as bibliotecas
 
-%matplotlib inline
+'exec(%matplotlib inline)'
 from imageai.Detection.Custom import CustomObjectDetection
 from prettytable import PrettyTable
 import json, shutil, os, numpy as np, skimage.io, matplotlib.pyplot as plt, skimage.segmentation, cv2
@@ -8,8 +8,9 @@ import json, shutil, os, numpy as np, skimage.io, matplotlib.pyplot as plt, skim
 
 # CRIANDO AS PASTAS
 
-pathIMG, dirsIMG, filesIMG = next(os.walk("server\images"))
-path, dirs, files = next(os.walk("server\corridas"))
+
+pathIMG, dirsIMG, filesIMG = next(os.walk(os.path.join("server", "images")))
+path, dirs, files = next(os.walk(os.path.join("server","corridas")))
 
 if( len(filesIMG) == len(dirs) ):
   print("Não há mais imagem para treinar. Por favor insira mais imagens na pasta 'server/images'")
@@ -187,19 +188,19 @@ else:
   shutil.move("barcode-detected-objects", folderCorrida)
 
   barcode = "server/corridas/Corrida_" + newFolderCorrida + "/barcode-detected-objects"
-  images = "server/Corridas/Corrida_" + newFolderCorrida + "/tags_images"
+  images = "server/corridas/Corrida_" + newFolderCorrida + "/tags_images"
   shutil.move(barcode, images)
 
   print("Pastas movidas para o drive com sucesso!")
 
 
 # conta num arquivos na pasta
-pathIMG, dirsIMG, filesIMG = next(os.walk("server/images"))
-root, dirs, files = next(os.walk("server/corridas"))
+pathIMG, dirsIMG, filesIMG = next(os.walk(os.path.join("server","images")))
+root, dirs, files = next(os.walk(os.path.join("server","corridas")))
 
 pasta = PrettyTable(["Corridas na pasta", "Status"])
 for i in range(0, len(dirs)):
-  pathJSON, dirsJSON, filesJSON = next(os.walk("server/corridas/Corrida_"+str(i+1)+"/tags_json"))
+  pathJSON, dirsJSON, filesJSON = next(os.walk(os.path.join("server","corridas","Corrida_"+str(i+1),"tags_json")))
   if(len(filesJSON)>0):
     status = "Treinada"
   else:
@@ -215,7 +216,7 @@ corrida = Image_Number
 print("corrida", corrida)
 print("")
 
-path, dirs, files = next(os.walk("server/corridas/Corrida_" + str(corrida) +"/tags_images"))
+path, dirs, files = next(os.walk(os.path.join("server","corridas","Corrida_" + str(corrida), "tags_images")))
 file_count_tag = len(files)
 tags = PrettyTable(["Treinar", "Tags"])
 tags.add_row(["Corrida_"+str(corrida), str(file_count_tag)])
@@ -358,12 +359,9 @@ with open('server/corridas/Corrida_'+str(corrida)+'/config_'+str(corrida)+'.json
 
 
 
-config = "config"
-deleted = "deleted"
-os.mkdir(config) 
-os.mkdir(deleted) 
+config = "server/corridas_config/config"
 
-root, dirs, files = next(os.walk("Colab/Corridas"))
+root, dirs, files = next(os.walk("server/corridas/"))
 
 for i in range(1, len(dirs)+1):
   check = 'server/corridas/Corrida_'+str(i)+'/config_'+str(i)+'.json'
