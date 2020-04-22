@@ -360,9 +360,6 @@ with open('server/corridas/Corrida_'+str(corrida)+'/config_'+str(corrida)+'.json
 
 
 config = "server/corridas_config/config"
+check = 'server/corridas/Corrida_'+str(corrida)+'/config_'+str(corrida)+'.json'
 
-root, dirs, files = next(os.walk("server/corridas/"))
-
-for i in range(1, len(dirs)+1):
-  check = 'server/corridas/Corrida_'+str(i)+'/config_'+str(i)+'.json'
-  shutil.move(check, config)
+shutil.move(check, config)
