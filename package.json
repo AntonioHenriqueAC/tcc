@@ -12,7 +12,8 @@
     "docker:build": "docker image build -t tcc .",
     "docker:run": "docker container run --publish 8080:8080 -d --name webhost tcc",
     "docker:log": "docker logs -f webhost",
-    "docker:all": "npm run docker:rm && npm run docker:build && npm run docker:run && npm run docker:log"
+    "docker:all": "npm run docker:rm && npm run docker:build && npm run docker:run && npm run docker:log",
+    "docker:start": "npm run docker:build && npm run docker:run && echo \"Listen in http://localhost.com:8080\""
   },
   "engines": {
     "node": "12.14.0"

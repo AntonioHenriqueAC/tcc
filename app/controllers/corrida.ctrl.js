@@ -228,8 +228,6 @@ let runPy = new Promise(function (success, nosuccess) {
 	});
 });
 
-
-
  runPy.then( () =>{
 	 res.redirect('/');
 	 }

@@ -344,9 +344,10 @@ for x in range(file_count_tag):
 
 
 #config_x.json
-
-avgCorrida = avgCorrida/float(file_count_tag)
-
+if(file_count_tag != 0):
+  avgCorrida = avgCorrida/float(file_count_tag)
+else:
+  avgCorrida = "Error"
 
 config = {
     "numCorrida": num,
@@ -364,3 +365,5 @@ config = "server/corridas_config/config"
 check = 'server/corridas/Corrida_'+str(corrida)+'/config_'+str(corrida)+'.json'
 
 shutil.move(check, config)
+
+print("Corrida treinada com sucesso!")
