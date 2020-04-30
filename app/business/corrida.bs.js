@@ -25,11 +25,17 @@ Corrida.prototype.list = async () => {
 	const mapPromise = obj.map(function (corrida) {
 		let tag = JSON.stringify(corrida.numCorrida);
 		let nuMCorrida = '';
-		
+		let first2 = tag[1] + tag[2];
+
 		for (let i = 0; i < tag.length; i++) {
-			if((i>2) && (i<11)){
+			if((i>2) && (i<9)){
 				nuMCorrida += tag[i]
 			}
+		}
+		if (first2 == 28){
+			nuMCorrida = 2 + nuMCorrida
+		}else{
+			nuMCorrida += 1 + nuMCorrida
 		}
 
 		if (i >= 0) {

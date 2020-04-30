@@ -51,7 +51,7 @@ module.exports.checkCorrida = async (req, res) => {
 	
 	let corrida = new CorridaBs();
 	let targetCorrida = req.body.position;
-	let dir = rootPath + 'server/corridas/config/';
+	let dir = rootPath + 'server/corridas_config/config';
 
 	async function getDirectories(path) {
 		const files = await readDirPromise(path);
