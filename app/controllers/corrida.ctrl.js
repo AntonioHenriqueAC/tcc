@@ -9,6 +9,7 @@ var multer = require('multer');
 const readDirPromise = util.promisify(fs.readdir);
 const renamePromise = util.promisify(fs.rename)
 const readFilePromise = util.promisify(fs.readFile)
+const writeFilePromise = util.promisify(fs.writeFile)
 
 
 module.exports.list = async (req, res) =>{
@@ -51,7 +52,7 @@ module.exports.checkCorrida = async (req, res) => {
 	
 	let corrida = new CorridaBs();
 	let targetCorrida = req.body.position;
-	let dir = rootPath + 'server/corridas_config/config';
+	let dir = rootPath + 'server/corridas_config/config/';
 
 	async function getDirectories(path) {
 		const files = await readDirPromise(path);
@@ -74,9 +75,7 @@ module.exports.checkCorrida = async (req, res) => {
 		
 			result.Status = "Despachada"
 
-			fs.writeFile(fileName, JSON.stringify(result), function writeJSON(err) {
-				if (err) return console.log(err);
-			});
+			await writeFilePromise(fileName, JSON.stringify(result))
 
 			if (corridaStatus == "Despachada") {
 				res.render('corrida-desp');
@@ -92,8 +91,8 @@ module.exports.checkCorrida = async (req, res) => {
 module.exports.deleteCorrida = async (req, res) => {
 var corrida = new CorridaBs();
 
-var dir = rootPath + 'server/corridas/config/';
-var dirDelete = rootPath + 'server/corridas/deleted/';
+var dir = rootPath + 'server/corridas_config/config/';
+var dirDelete = rootPath + 'server/corridas_config/deleted/';
 
 
 async function getDirectories(path ) {
@@ -153,7 +152,6 @@ module.exports.showImage = async (req, res) => {
 
 module.exports.editImage = async (req, res) => {
 
- console.log(' CHEGA AQUI ???' );
 	var corrida = new CorridaBs(req);
 	
 	var numCorrida = rootPath + "server/corridas/Corrida_" + req.body.id + "/tags_json/tag-" + req.body.target + ".json"
